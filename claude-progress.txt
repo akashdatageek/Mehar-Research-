@@ -152,3 +152,17 @@ What changed
 - tests/unit/test_architecture_docs.py: every name in rlg.llm.__all__ / rlg.queue.__all__
   and every table the module writes must appear in its doc, plus all template headings.
 Notes: phase P0 is not tagged `p0-done` yet because P0-07 is blocked on arXiv access.
+
+## 2026-10-17 — Session 2 — P1-01 Core registry schema: PASS
+What changed
+- migrations/versions/0004_registry.py: raw_document (immutable via BEFORE UPDATE trigger;
+  unique (uri, content_sha256)), paper (arxiv_id unique, authors/categories JSONB,
+  triage_route check), paper_version (unique paper_id+version, has_source),
+  artifact (kind check, canonical_url unique), artifact_version (unique artifact_id +
+  content_sha256 -> unchanged content never makes a new version), external_id (PK
+  entity_kind+scheme+value so one id maps to one entity; scheme check).
+- src/rlg/store/blobs.py: BlobStore — <root>/<sha[:2]>/<sha[2:4]>/<sha>, atomic writes,
+  stored once, corruption check on read. EnvSettings.blob_dir (default data/blobs).
+- src/rlg/store/registry.py: register_raw_document() — blob + row, idempotent per (uri, sha).
+- tests/unit/test_blobs.py, tests/integration/test_registry.py.
+Notes: raw_document blocks UPDATE but allows DELETE (needed for takedown requests).

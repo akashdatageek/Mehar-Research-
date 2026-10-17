@@ -33,6 +33,7 @@ class EnvSettings(BaseSettings):
     arxiv_contact_email: str | None = None
     daily_llm_budget_usd: float | None = Field(default=None, ge=0)
     database_url: str = "postgresql+psycopg://rlg:rlg@localhost:5432/rlg"
+    blob_dir: Path = REPO_ROOT / "data" / "blobs"
 
 
 class ModelTier(BaseModel):
