@@ -119,3 +119,27 @@ What changed
 Notes: worker death is simulated (claim without complete) with an injected clock rather
   than killing a real process; the claim transaction commits immediately, so the two are
   equivalent from the database's view.
+
+## 2026-10-17 — Session 2 — P0-07 Fixture papers: BLOCKED (passes stays false)
+What changed (code done, data missing)
+- src/rlg/ingest/ratelimit.py: RateLimiter(min_interval, clock, sleep) — reused by P1.
+- src/rlg/ingest/fixtures.py: fixture_specs() from anchors.yaml (20 `fixture: true`, 3
+  `pdf_only`); download_fixtures() fetches arxiv.org/pdf and /e-print with >=3 s spacing and
+  a User-Agent carrying ARXIV_CONTACT_EMAIL (required); resumable (skips files on disk and
+  files arXiv already 404'd); writes tests/fixtures/manifest.json with sha256/bytes;
+  verify_fixtures(). CLI: `rlg fixtures download`, `rlg fixtures verify`.
+- Paper files go to tests/fixtures/papers/ which is gitignored (CLAUDE.md: full text stays
+  local); only manifest.json will be committed.
+- src/rlg/llm/replay.py: ReplayProvider — replays tests/fixtures/llm_recordings/<key>.json,
+  records through a live provider when given one (RLG_LIVE=1 flows), RecordingMissing.
+- tests/e2e/conftest.py blocks socket connect + DNS for every e2e test unless RLG_LIVE=1.
+- Tests: tests/unit/test_fixtures.py (fake HTTP + fake clock: politeness, 404 handling,
+  resume makes zero requests, sha verification), tests/e2e/test_replay.py (record, then
+  replay with network blocked: zero network calls).
+Blocker
+- This cloud environment's network policy denies arxiv.org and export.arxiv.org, so the
+  20 papers cannot be downloaded here. test_fixture_papers_present_with_sha256 skips until
+  `rlg fixtures download` has been run on a machine with arXiv access (needs
+  ARXIV_CONTACT_EMAIL in .env). Mark P0-07 passing after that run and committing
+  tests/fixtures/manifest.json.
+- Downstream features that need the papers: P3-02, P4-02 (via P3-02), and the e2e paths.

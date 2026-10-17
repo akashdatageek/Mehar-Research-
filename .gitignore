@@ -26,3 +26,6 @@ htmlcov/
 mlruns/
 *.log
 .DS_Store
+
+# downloaded fixture papers (full text stays local; manifest.json is committed)
+tests/fixtures/papers/

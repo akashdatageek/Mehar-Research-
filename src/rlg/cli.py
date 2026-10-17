@@ -62,5 +62,30 @@ def queue_stats() -> None:
         typer.echo(f"{k}\t{status}\t{n}")
 
 
+fixtures_app = typer.Typer(help="Test fixture papers.", no_args_is_help=True)
+app.add_typer(fixtures_app, name="fixtures")
+
+
+@fixtures_app.command("download")
+def fixtures_download() -> None:
+    """Download fixture papers from arXiv (polite: >=3 s between requests)."""
+    from rlg.config import EnvSettings
+    from rlg.ingest.fixtures import download_fixtures, urllib_get
+
+    manifest = download_fixtures(urllib_get, EnvSettings().arxiv_contact_email or "")
+    typer.echo(f"{len(manifest['papers'])} papers in manifest")
+
+
+@fixtures_app.command("verify")
+def fixtures_verify() -> None:
+    """Check downloaded fixtures against manifest.json sha256 values."""
+    from rlg.ingest.fixtures import verify_fixtures
+
+    problems = verify_fixtures()
+    for p in problems:
+        typer.echo(p)
+    raise typer.Exit(1 if problems else 0)
+
+
 if __name__ == "__main__":
     app()
