@@ -128,5 +128,52 @@ def ingest_harvest(
     )
 
 
+@ingest_app.command("daily")
+def ingest_daily(
+    day: Annotated[
+        str | None, typer.Option(help="UTC day YYYY-MM-DD (default: yesterday).")
+    ] = None,
+) -> None:
+    """Store the day's new arXiv submissions in cs.* and stat.ML (arXiv API)."""
+    from datetime import date
+
+    from rlg.ingest.arxiv_api import daily_listing, yesterday_utc
+    from rlg.ingest.arxiv_oai import default_http
+
+    d = date.fromisoformat(day) if day else yesterday_utc()
+    s = daily_listing(make_engine(), default_http(), d)
+    typer.echo(f"{d}: records={s.records} papers_inserted={s.papers_inserted}")
+
+
+@ingest_app.command("fetch")
+def ingest_fetch(
+    arxiv_ids: Annotated[list[str] | None, typer.Argument(help="arXiv ids to fetch.")] = None,
+    deep_read: Annotated[
+        bool, typer.Option("--deep-read", help="Enqueue fetch jobs for pending deep_read papers.")
+    ] = False,
+) -> None:
+    """Fetch PDF + LaTeX e-print into the blob store."""
+    from rlg.config import EnvSettings
+    from rlg.ingest.arxiv_api import fetch_files, pending_deep_read
+    from rlg.ingest.arxiv_oai import default_http
+    from rlg.queue import enqueue
+    from rlg.store.blobs import BlobStore
+
+    engine = make_engine()
+    if deep_read:
+        ids = pending_deep_read(engine, limit=10_000)
+        n = sum(
+            enqueue(engine, "arxiv.fetch_files", {"arxiv_id": i}, dedup_key=f"fetch:{i}")
+            is not None
+            for i in ids
+        )
+        typer.echo(f"enqueued {n} fetch job(s)")
+        return
+    http, blobs = default_http(), BlobStore(EnvSettings().blob_dir)
+    for i in arxiv_ids or []:
+        r = fetch_files(engine, blobs, http, i)
+        typer.echo(f"{i}v{r.version}: pdf={r.pdf_sha256 is not None} has_source={r.has_source}")
+
+
 if __name__ == "__main__":
     app()

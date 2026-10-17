@@ -111,8 +111,9 @@ paper_version = Table(
     Column("paper_id", BigInteger, ForeignKey("paper.id"), nullable=False),
     Column("version", Integer, nullable=False),
     Column("published_at", DateTime(timezone=True), nullable=False),
-    Column("raw_document_id", BigInteger, ForeignKey("raw_document.id")),
+    Column("raw_document_id", BigInteger, ForeignKey("raw_document.id")),  # LaTeX e-print
     Column("has_source", Boolean),
+    Column("pdf_raw_document_id", BigInteger, ForeignKey("raw_document.id")),
 )
 
 artifact = Table(

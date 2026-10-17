@@ -14,3 +14,21 @@ def harvest_day(payload: dict[str, Any]) -> None:
 
     day = date.fromisoformat(payload["day"])
     harvest(make_engine(), default_http(), day, day, payload.get("sets") or DEFAULT_SETS)
+
+
+@handler("arxiv.fetch_files")
+def fetch_files_job(payload: dict[str, Any]) -> None:
+    """Fetch PDF + e-print for one paper: payload {"arxiv_id": "...", "version": int?}."""
+    from rlg.config import EnvSettings
+    from rlg.ingest.arxiv_api import fetch_files
+    from rlg.ingest.arxiv_oai import default_http
+    from rlg.store.blobs import BlobStore
+    from rlg.store.db import make_engine
+
+    fetch_files(
+        make_engine(),
+        BlobStore(EnvSettings().blob_dir),
+        default_http(),
+        payload["arxiv_id"],
+        payload.get("version"),
+    )

@@ -202,3 +202,22 @@ Live check: harvested stat:stat:ML for 2026-10-01 -> 72 papers, 110 versions; se
   inserted 0 rows. Note one cs day is ~1.7k records (datestamp includes updated papers).
 Decision: OAI listing pages are not stored as raw_document (their responseDate changes on
   every fetch, so re-harvests would always add rows); the paper rows are the record.
+
+## 2026-10-17 — Session 3 — P1-03 arXiv daily listing + e-print fetch: PASS
+What changed
+- migrations/versions/0005_paper_version_pdf.py: paper_version.pdf_raw_document_id (the
+  PDF blob; raw_document_id stays the LaTeX e-print, per PLAN.md).
+- src/rlg/ingest/arxiv_api.py: parse_feed (Atom -> OaiRecord, reusing store_records;
+  v1 date = published, vN = updated), daily_listing(day) with
+  `(cat:cs.* OR cat:stat.ML) AND submittedDate:[day 0000 TO 2359]`, paging 200;
+  fetch_files() for the latest (or given) version: PDF + e-print into blobs via
+  register_raw_document, has_source from content sniffing (gzip/tar = source; a PDF body
+  at the e-print URL or a 404 = no source); pending_deep_read().
+- Queue kind `arxiv.fetch_files`; CLI `rlg ingest daily [--day]`,
+  `rlg ingest fetch <ids...> | --deep-read` (enqueues pending deep_read papers).
+- tests/fixtures/arxiv_oai/api_listing_2026-10-15.xml (real API response, 3 entries).
+- Tests: tests/unit/test_arxiv_api.py, tests/integration/test_arxiv_fetch.py (real ReAct
+  fixture PDF + e-print stored with sha256; PDF-only and 404 -> has_source=false).
+Live check: `rlg ingest daily --day 2026-10-15` stored 714 papers (re-run 0);
+  `rlg ingest fetch 2610.22372` stored a 14 MB PDF and 13.6 MB e-print.
+Note: e-print URLs 301-redirect to /src/<id>; urllib follows redirects.
