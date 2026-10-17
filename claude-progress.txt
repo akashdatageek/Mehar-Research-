@@ -166,3 +166,17 @@ What changed
 - src/rlg/store/registry.py: register_raw_document() — blob + row, idempotent per (uri, sha).
 - tests/unit/test_blobs.py, tests/integration/test_registry.py.
 Notes: raw_document blocks UPDATE but allows DELETE (needed for takedown requests).
+
+## 2026-10-17 — Session 3 — P0-07 Fixture papers: PASS
+What changed
+- Network access to arXiv enabled. `rlg fixtures download` fetched the 20 fixture papers
+  (17 with LaTeX e-print + PDF, 3 PDF-only: ToolLLM, MetaGPT, MemGPT; 163 MB, gitignored)
+  and wrote tests/fixtures/manifest.json (committed). `rlg fixtures verify` clean;
+  test_fixture_papers_present_with_sha256 now runs and passes.
+- Checked all 37 arXiv ids in config/anchors.yaml against the arXiv API: every id resolves
+  to the listed title.
+- .env created locally (gitignored, mode 600) with ARXIV_CONTACT_EMAIL and GEMINI_API_KEY.
+- Live smoke test of GeminiProvider (gemini-3.5-flash-lite, 40 in / 23 out tokens): JSON
+  output validated against a Pydantic schema. AnthropicProvider still untested live (no
+  ANTHROPIC_API_KEY).
+Phase P0 complete -> tag p0-done.
