@@ -1,15 +1,13 @@
 """Database connection helpers."""
 
-import os
-
 from sqlalchemy import Engine, create_engine, text
 
-DEFAULT_DATABASE_URL = "postgresql+psycopg://rlg:rlg@localhost:5432/rlg"
+from rlg.config.settings import EnvSettings
 
 
 def database_url() -> str:
-    """DATABASE_URL from the environment (.env), else the docker-compose default."""
-    return os.environ.get("DATABASE_URL", DEFAULT_DATABASE_URL)
+    """DATABASE_URL from the environment or .env, else the docker-compose default."""
+    return EnvSettings().database_url
 
 
 def make_engine(url: str | None = None) -> Engine:

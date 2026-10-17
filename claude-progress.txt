@@ -42,3 +42,20 @@ Dependencies added: sqlalchemy, alembic, psycopg[binary], pgvector (stack in PLA
 Verification: make up healthy; make lint OK; make test 8 passed; init.sh twice OK.
 Notes: in the cloud container dockerd must be started by hand (`dockerd &`); Docker Hub
   rate-limits anonymous pulls (429), so the image tag is pinned to the one that pulled.
+
+## 2026-10-17 — Session 2 — P0-03 Config loading: PASS
+What changed
+- src/rlg/config/settings.py: EnvSettings (pydantic-settings; env vars then .env), ModelTier
+  (provider, model, training_cutoff, $/Mtok in/out, batch_discount, max_output_tokens,
+  cost_usd()), Budgets, ModelsConfig (requires triage/extract/adjudicate; extra keys
+  forbidden), AppConfig (daily budget: .env DAILY_LLM_BUDGET_USD overrides models.yaml),
+  load_models_config() / load_config(). Errors raise ConfigError naming file + field paths.
+- config/models.yaml: triage=claude-haiku-5-5, extract=claude-sonnet-5-5,
+  adjudicate=claude-opus-5-5 with list prices and 50% batch discount; budgets.
+- store/db.py now reads DATABASE_URL through EnvSettings (so .env works).
+- tests/unit/test_config.py: example config loads, env override, cost math, invalid
+  models.yaml -> clear ConfigError, missing tier, unknown field, bad YAML, missing file.
+Dependencies added: pydantic-settings (typed .env loading; avoids hand-rolled parser).
+Open issues
+- training_cutoff for Haiku 5.5 / Sonnet 5.5 is a placeholder (2026-06-01) — confirm from
+  model cards before the leakage probe (P9-02) relies on it.
