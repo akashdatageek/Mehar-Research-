@@ -100,3 +100,22 @@ What changed
 Open issues
 - Budget guard is per-process read-then-call; concurrent workers could overshoot by at most
   one worst-case call each. Fine at current scale; revisit if P6 backfill runs many workers.
+
+## 2026-10-17 — Session 2 — P0-06 Postgres job queue: PASS
+What changed
+- migrations/versions/0003_job_queue.py: job table (PLAN.md columns + dedup_key unique,
+  max_attempts, locked_by, last_error, created_at, finished_at; status check constraint;
+  index on (status, run_after)).
+- src/rlg/queue/jobs.py: enqueue (dedup_key -> idempotent), claim (UPDATE ... WHERE id =
+  (SELECT ... FOR UPDATE SKIP LOCKED LIMIT 1); also reclaims `running` jobs whose lock is
+  older than lock_timeout; stale jobs already at max_attempts are failed instead),
+  complete/fail guarded by locked_by (a reclaimed job ignores the dead worker's late
+  writes), exponential backoff base*2^(n-1) capped at 6 h, stats.
+- src/rlg/queue/worker.py: handler registry (@handler(kind)), run_worker loop, `noop` kind.
+- CLI: `rlg queue work [--kind K] [--max-jobs N] [--once]`, `rlg queue stats`.
+- tests/integration/test_queue.py: 4 threads x 200 jobs never double-claim; killed worker's
+  job reclaimed only after lock timeout; retries with backoff then failed at max_attempts;
+  worker loop retries a flaky handler; dedup.
+Notes: worker death is simulated (claim without complete) with an injected clock rather
+  than killing a real process; the claim transaction commits immediately, so the two are
+  equivalent from the database's view.

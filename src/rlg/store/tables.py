@@ -53,3 +53,21 @@ llm_cache = Table(
     Column("output_json", JSONB, nullable=False),
     Column("created_at", DateTime(timezone=True), nullable=False),
 )
+
+job = Table(
+    "job",
+    metadata,
+    Column("id", BigInteger, primary_key=True, autoincrement=True),
+    Column("kind", String, nullable=False),
+    Column("payload_json", JSONB, nullable=False),
+    Column("dedup_key", String, unique=True),
+    Column("status", String, nullable=False),
+    Column("attempts", Integer, nullable=False),
+    Column("max_attempts", Integer, nullable=False),
+    Column("run_after", DateTime(timezone=True), nullable=False),
+    Column("locked_at", DateTime(timezone=True)),
+    Column("locked_by", String),
+    Column("last_error", Text),
+    Column("created_at", DateTime(timezone=True), nullable=False),
+    Column("finished_at", DateTime(timezone=True)),
+)
