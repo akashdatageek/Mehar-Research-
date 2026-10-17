@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2026-10-16T16:39:55Z</responseDate>
+                <request verb="ListRecords" metadataPrefix="arXivRaw" from="2026-10-01" until="2026-10-01" set="cs">http://oaipmh.arxiv.org/oai</request>
+
+
+    <ListRecords>
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:1709.09051</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>math:math:OC</setSpec>
+            <setSpec>cs:cs:AI</setSpec>
+            <setSpec>math:math:CO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>1709.09051</id>
+        <submitter>Ikhlef Bechar</submitter>
+            <version version="v1">
+                <date>Mon, 25 Sep 2017 15:13:38 GMT</date>
+                <size>160kb</size>
+            </version>
+            <version version="v2">
+                <date>Thu, 19 Mar 2026 17:22:40 GMT</date>
+                <size>0kb</size>
+                    <source_type>I</source_type>
+            </version>
+            <version version="v3">
+                <date>Tue, 29 Sep 2026 20:39:34 GMT</date>
+                <size>42kb</size>
+            </version>
+        <title>A polynomial time algebraic solution to exact marginal inference in Markov Random Field models</title>
+        <authors>Ikhlef Bechar</authors>
+        <categories>math.OC cs.AI math.CO</categories>
+            <comments>Paper still awaits a peer-review by the academic community</comments>
+            <acm-class>None</acm-class>
+            <license>http://creativecommons.org/licenses/by-nc-sa/4.0/</license>
+            <abstract>This paper develops on algebraic grounds a polynomial time exact linear solution to the hard combinatorial problem of marginal inference in Markov random field (MRF) models under general assumptions. To prove our claim, we first implicitly remodel a MRF joint distribution as the unique solution of some linear identity assuming its clique potential functions (equivalently, its individual conditional distributions) to be specified. Then, by assuming an arbitrary point subset, we relax accordingly such a (global) linear identity for deriving a second linear identity, solely, acting on a polynomial time number of entries (e.g.; local marginals or Fourier frequencies) of a solution. Then, we show, only using linear algebraic techniques, that such an identity enables to capture all the entries necessary for the exact reconstruction of an MRF marginal distribution, thus, allowing to solve for the latter, exactly and in polynomial time, using a standard linear solver. Last, but not least, this paper probably solves, once and for all, the P = NP conjecture.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:1806.11314</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:CV</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>1806.11314</id>
+        <submitter>Nevrez Imamoglu</submitter>
+            <version version="v1">
+                <date>Fri, 29 Jun 2018 09:31:56 GMT</date>
+                <size>1468kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Mon, 02 Jul 2018 01:25:04 GMT</date>
+                <size>1468kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v3">
+                <date>Wed, 30 Sep 2026 07:56:16 GMT</date>
+                <size>1468kb</size>
+            </version>
+        <title>Hyperspectral Image Dataset for Benchmarking on Salient Object Detection</title>
+        <authors>Nevrez Imamoglu, Yu Oishi, Xiaoqiang Zhang, Guanqun Ding, Yuming Fang, Toru Kouyama, Ryosuke Nakamura</authors>
+        <categories>cs.CV</categories>
+            <comments>3 pages, 3 figures. 2 tables, appeared in the Proceedings of the 10th International Conference on Quality of Multimedia Experience (QoMEX 2018)</comments>
+            <doi>10.1109/QoMEX.2018.8463428</doi>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Many works have been done on salient object detection using supervised or unsupervised approaches on colour images. Recently, a few studies demonstrated that efficient salient object detection can also be implemented by using spectral features in visible spectrum of hyperspectral images from natural scenes. However, these models on hyperspectral salient object detection were tested with a very few number of data selected from various online public dataset, which are not specifically created for object detection purposes. Therefore, here, we aim to contribute to the field by releasing a hyperspectral salient object detection dataset with a collection of 60 hyperspectral images with their respective ground-truth binary images and representative rendered colour images (sRGB). We took several aspects in consideration during the data collection such as variation in object size, number of objects, foreground-background contrast, object position on the image, and etc. Then, we prepared ground truth binary images for each hyperspectral data, where salient objects are labelled on the images. Finally, we did performance evaluation using Area Under Curve (AUC) metric on some existing hyperspectral saliency detection models in literature.
+  The dataset is publicly available on our GitHub repository and Hugging Face dataset hub.
+  Repository: https://github.com/nevrez/HS-SOD; (Old original repository https://github.com/gistairc/HS-SOD)
+  Dataset: https://huggingface.co/datasets/gsvrg/HS-SOD.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:1808.06723</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>physics:cond-mat:stat-mech</setSpec>
+            <setSpec>cs:cs:CR</setSpec>
+            <setSpec>cs:cs:IT</setSpec>
+            <setSpec>math:math:IT</setSpec>
+            <setSpec>physics:nlin:CD</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>1808.06723</id>
+        <submitter>James P. Crutchfield</submitter>
+            <version version="v1">
+                <date>Tue, 21 Aug 2018 00:04:01 GMT</date>
+                <size>826kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Tue, 29 Sep 2026 18:03:04 GMT</date>
+                <size>763kb</size>
+            </version>
+        <title>Modes of Information Flow</title>
+        <authors>Ryan G. James, Blanca Daniella Mansante Ayala, Bahti Zakirov, and James P. Crutchfield</authors>
+        <categories>cond-mat.stat-mech cs.CR cs.IT math.IT nlin.CD</categories>
+            <comments>14 pages; 13 figures, 1 table; http://csc.ucdavis.edu/~cmg/compmech/pubs/ite.htm</comments>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Information flow between components of a system takes many forms and is key to understanding the organization and functioning of large-scale, complex systems. We demonstrate three modalities of information flow from time series X to time series Y. Intrinsic information flow exists when the past of X is individually predictive of the present of Y, independent of Y&#39;s past; this is most commonly considered information flow. Shared information flow exists when X&#39;s past is predictive of Y&#39;s present in the same manner as Y&#39;s past; this occurs due to synchronization or common driving, for example. Finally, synergistic information flow occurs when neither X&#39;s nor Y&#39;s pasts are predictive of Y&#39;s present on their own, but taken together they are. The two most broadly-employed information-theoretic methods of quantifying information flow---time-delayed mutual information and transfer entropy---are both sensitive to a pair of these modalities: time-delayed mutual information to both intrinsic and shared flow, and transfer entropy to both intrinsic and synergistic flow. To quantify each mode individually we introduce our cryptographic flow ansatz, positing that intrinsic flow is synonymous with secret key agreement between X and Y. Based on this, we employ an easily-computed secret-key-agreement bound---intrinsic mutual information---to quantify the three flow modalities in a variety of systems including asymmetric flows, coupled chaotic dynamical systems, leader-follower collective dynamics, and financial markets.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2107.10923</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:GT</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2107.10923</id>
+        <submitter>Rachitesh Kumar</submitter>
+            <version version="v1">
+                <date>Thu, 22 Jul 2021 20:55:41 GMT</date>
+                <size>354kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Fri, 03 Feb 2023 22:08:44 GMT</date>
+                <size>437kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v3">
+                <date>Wed, 30 Sep 2026 00:02:09 GMT</date>
+                <size>165kb</size>
+            </version>
+        <title>Throttling Equilibria in Auction Markets</title>
+        <authors>Xi Chen, Christian Kroer, Rachitesh Kumar</authors>
+        <categories>cs.GT</categories>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Throttling is a popular method of budget management for online ad auctions in which the platform modulates the participation probability of an advertiser in order to smoothly spend her budget across many auctions. In this work, we investigate the setting in which all of the advertisers simultaneously employ throttling to manage their budgets, and we do so for both first-price and second-price auctions. We analyze the structural and computational properties of the resulting equilibria. For first-price auctions, we show that a unique equilibrium always exists, is well-behaved and can be computed efficiently via tatonnement-style decentralized dynamics. In contrast, for second-price auctions, we prove that even though an equilibrium always exists, the problem of finding even an approximate equilibrium is PPAD-complete, there can be multiple equilibria, and it is NP-hard to find the revenue maximizing one. We also compare the equilibrium outcomes of throttling to those of multiplicative pacing, which is the other most popular and well-studied method of budget management. Finally, we characterize the Price of Anarchy of these equilibria for liquid welfare by showing that it is at most 2 for both first-price and second-price auctions, and demonstrating that our bound is tight.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2211.12301</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:SI</setSpec>
+            <setSpec>math:math:PR</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2211.12301</id>
+        <submitter>Omri Ben-Eliezer</submitter>
+            <version version="v1">
+                <date>Tue, 22 Nov 2022 14:32:15 GMT</date>
+                <size>31kb</size>
+            </version>
+            <version version="v2">
+                <date>Mon, 17 Jun 2024 15:09:28 GMT</date>
+                <size>32kb</size>
+            </version>
+            <version version="v3">
+                <date>Tue, 29 Sep 2026 19:44:08 GMT</date>
+                <size>33kb</size>
+            </version>
+        <title>Is this correct? Let&#39;s check!</title>
+        <authors>Omri Ben-Eliezer, Dan Mikulincer, Elchanan Mossel, Madhu Sudan</authors>
+        <categories>cs.SI math.PR</categories>
+            <comments>Corrected version, fixing an off-by-one error in one of the main results. The qualitative results remain unchanged. We thank Luke Podwojski and Serte Donderwinkel for pointing out the errors</comments>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Societal accumulation of knowledge is a complex process. The correctness of new units of knowledge depends not only on the correctness of new reasoning, but also on the correctness of old units that the new one builds on. The errors in such accumulation processes are often remedied by error correction and detection heuristics.
+  Motivating examples include the scientific process based on scientific publications, and software development based on libraries of code.
+  Natural processes that aim to keep errors under control, such as peer review in scientific publications, and testing and debugging in software development, would typically check existing pieces of knowledge -- both for the reasoning that generated them and the previous facts they rely on. In this work, we present a simple process that models such accumulation of knowledge and study the persistence (or lack thereof) of errors.
+  We consider a simple probabilistic model for the generation of new units of knowledge based on the preferential attachment growth model, which additionally allows for errors. Furthermore, the process includes checks aimed at catching these errors. We investigate when effects of errors persist forever in the system (with positive probability) and when they get rooted out completely by the checking process.
+  The two basic parameters associated with the checking process are the {\em probability} of conducting a check and the depth of the check. We show that errors are rooted out if checks are sufficiently frequent and sufficiently deep. In contrast, shallow or infrequent checks are insufficient to root out errors.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2302.02006</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:LG</setSpec>
+            <setSpec>cs:cs:DS</setSpec>
+            <setSpec>math:math:OC</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2302.02006</id>
+        <submitter>Rachitesh Kumar</submitter>
+            <version version="v1">
+                <date>Fri, 03 Feb 2023 21:23:09 GMT</date>
+                <size>463kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Wed, 30 Sep 2026 01:06:53 GMT</date>
+                <size>76kb</size>
+            </version>
+        <title>Robust Budget Pacing with a Single Sample</title>
+        <authors>Santiago Balseiro, Rachitesh Kumar, Vahab Mirrokni, Balasubramanian Sivan, Di Wang</authors>
+        <categories>cs.LG cs.DS math.OC</categories>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Major Internet advertising platforms offer budget pacing tools as a standard service for advertisers to manage their ad campaigns. Given the inherent non-stationarity in an advertiser&#39;s value and also competing advertisers&#39; values over time, a commonly used approach is to learn a target expenditure plan that specifies a target spend as a function of time, and then run a controller that tracks this plan. This raises the question: how many historical samples are required to learn a good expenditure plan? We study this question by considering an advertiser repeatedly participating in $T$ second-price auctions, where the tuple of her value and the highest competing bid is drawn from an unknown time-varying distribution. The advertiser seeks to maximize her total utility subject to her budget constraint. Prior work has shown the sufficiency of $T\log T$ samples per distribution to achieve the optimal $O(\sqrt{T})$-regret. We dramatically improve this state-of-the-art and show that just one sample per distribution is enough to achieve the near-optimal $\tilde O(\sqrt{T})$-regret, while still being robust to noise in the sampling distributions.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <resumptionToken expirationDate='2026-10-17T00:00:00Z'>verb%3DListRecords%26metadataPrefix%3DarXivRaw%26from%3D2026-10-01%26until%3D2026-10-01%26set%3Dcs%26skip%3D1300</resumptionToken>
+
+    </ListRecords>
+</OAI-PMH>

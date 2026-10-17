@@ -1,0 +1,407 @@
+{
+  "version": 1,
+  "papers": [
+    {
+      "anchor_id": "cot",
+      "arxiv_id": "2201.11903",
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2201.11903",
+          "sha256": "7d9f878c23b460e4566aa4ec9201b1abfb3b8faefb2b1356e411cb90fef72a12",
+          "bytes": 891773
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2201.11903",
+          "sha256": "5f3a38e27058b534e6446b34abe513f0a7eec6f3a816638e25703664f0531938",
+          "bytes": 313261
+        }
+      ]
+    },
+    {
+      "anchor_id": "react",
+      "arxiv_id": "2210.03629",
+      "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2210.03629",
+          "sha256": "f285b0971ae4a790e402fb93966bed3adde2cf0a04977d08b2b40d6ab0cace69",
+          "bytes": 633805
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2210.03629",
+          "sha256": "c81c6344ddae91fc0a36ea830c414ca72e3736ec02f84ccbd81ed7d7f67c0293",
+          "bytes": 1286049
+        }
+      ]
+    },
+    {
+      "anchor_id": "pal",
+      "arxiv_id": "2211.10435",
+      "title": "PAL: Program-aided Language Models",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2211.10435",
+          "sha256": "388628b05575ce71a9e8c0dd3a371addcb293f3b4fe31f61d58f7ec99560597b",
+          "bytes": 1180832
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2211.10435",
+          "sha256": "88ede3512260340c66bc5cd25514c25718e1db3dc2151f54138229ba9cb86b1c",
+          "bytes": 1136501
+        }
+      ]
+    },
+    {
+      "anchor_id": "tot",
+      "arxiv_id": "2305.10601",
+      "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2305.10601",
+          "sha256": "79c5237e3f63953a73f2b0d6894327702ee1f7e981450c251bb1b5cb4f8d7b8f",
+          "bytes": 799685
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2305.10601",
+          "sha256": "e602c297e3cb21f7b1a14039eaf7a23a124353a62c066743602780e25c1b9fc6",
+          "bytes": 637671
+        }
+      ]
+    },
+    {
+      "anchor_id": "reflexion",
+      "arxiv_id": "2303.11366",
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2303.11366",
+          "sha256": "6059b6f89fea9959bd3dab553fbb97756a3dfb1b15e3cbab2fbf3ab6664333bd",
+          "bytes": 591097
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2303.11366",
+          "sha256": "d70b771f527d912ce48da430ccd697fb09aaeabbfbfda404441943d398550304",
+          "bytes": 395034
+        }
+      ]
+    },
+    {
+      "anchor_id": "toolformer",
+      "arxiv_id": "2302.04761",
+      "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2302.04761",
+          "sha256": "6d7483d94653008e40c2058a1c22441c92e3713dae278b6361e8efc447c99522",
+          "bytes": 657966
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2302.04761",
+          "sha256": "5139a320f266bd19b4491cbc6cfdd2e3d3944524600eb78d33d439f432c2f0ce",
+          "bytes": 206464
+        }
+      ]
+    },
+    {
+      "anchor_id": "gorilla",
+      "arxiv_id": "2305.15334",
+      "title": "Gorilla: Large Language Model Connected with Massive APIs",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2305.15334",
+          "sha256": "1aeae54095cdae3a3ebaa29f7af0919d666e0c87d961848ae85b991b3c022718",
+          "bytes": 1247664
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2305.15334",
+          "sha256": "e9b09370230383ec0f283efb6390e7210d7b729cdce85dd0cd04651c7d6824d5",
+          "bytes": 1313869
+        }
+      ]
+    },
+    {
+      "anchor_id": "toolllm",
+      "arxiv_id": "2307.16789",
+      "title": "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs",
+      "pdf_only": true,
+      "has_source": false,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2307.16789",
+          "sha256": "295299721d67b250661fb6598bee86a2e9fe766241fdc08dd7cf389e984b4d1a",
+          "bytes": 2048075
+        }
+      ]
+    },
+    {
+      "anchor_id": "codeact",
+      "arxiv_id": "2402.01030",
+      "title": "Executable Code Actions Elicit Better LLM Agents",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2402.01030",
+          "sha256": "749a45e36cf89fc7e1b701a2a72f6609ce8d3697577ceb0fff5ce9339ce8539e",
+          "bytes": 4345392
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2402.01030",
+          "sha256": "6e52f5b43b9270ec38e7b16abfb1c7a7cadc5b40dda312b978dcdd839346ac10",
+          "bytes": 9000088
+        }
+      ]
+    },
+    {
+      "anchor_id": "camel",
+      "arxiv_id": "2303.17760",
+      "title": "CAMEL: Communicative Agents for \"Mind\" Exploration of Large Language Model Society",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2303.17760",
+          "sha256": "926c73c2ae9f9abc7612ab58373e428476f4de55db78646ed59de09810db7777",
+          "bytes": 7536497
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2303.17760",
+          "sha256": "232dc85336d51948808effa9590087b47ccdb7e4baa364b39120743da050faf2",
+          "bytes": 7341273
+        }
+      ]
+    },
+    {
+      "anchor_id": "metagpt",
+      "arxiv_id": "2308.00352",
+      "title": "MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework",
+      "pdf_only": true,
+      "has_source": false,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2308.00352",
+          "sha256": "17582e47647fac8eaa3681feade41c8408310c4133acc5c6823565fbe880e1ac",
+          "bytes": 16753634
+        }
+      ]
+    },
+    {
+      "anchor_id": "autogen",
+      "arxiv_id": "2308.08155",
+      "title": "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2308.08155",
+          "sha256": "fcf8b1acae6b1bd6f14c92463caa9726828bf998234ba9f10c2411087897c96b",
+          "bytes": 3571809
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2308.08155",
+          "sha256": "585146ab731f83a942c51247b6861dc35f20c0abdde424fd0d21a23091f22bc8",
+          "bytes": 6421530
+        }
+      ]
+    },
+    {
+      "anchor_id": "generative_agents",
+      "arxiv_id": "2304.03442",
+      "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2304.03442",
+          "sha256": "1b31e77fb24d25d7598f2c49e955d12a28b95a6dabad34acdac40f44bfb7a139",
+          "bytes": 11947867
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2304.03442",
+          "sha256": "eac665ea48f6665bd9874e19f27b5654fe1630c6a2844492a888ab021a7049e9",
+          "bytes": 13266086
+        }
+      ]
+    },
+    {
+      "anchor_id": "voyager",
+      "arxiv_id": "2305.16291",
+      "title": "Voyager: An Open-Ended Embodied Agent with Large Language Models",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2305.16291",
+          "sha256": "769a4e33ddeeb73870849232eece49afe882c2d146362e33917ccb432ba0efb8",
+          "bytes": 18830859
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2305.16291",
+          "sha256": "fc8eb405fdd52906a3423eb56111c956636da71342a761fbf66f92cbcfb3edc2",
+          "bytes": 13976297
+        }
+      ]
+    },
+    {
+      "anchor_id": "memgpt",
+      "arxiv_id": "2310.08560",
+      "title": "MemGPT: Towards LLMs as Operating Systems",
+      "pdf_only": true,
+      "has_source": false,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2310.08560",
+          "sha256": "9f674bcff69c86f11c813dcfad613d8841f5f8ed17979e3c4df06a91df7762e0",
+          "bytes": 663708
+        }
+      ]
+    },
+    {
+      "anchor_id": "webarena",
+      "arxiv_id": "2307.13854",
+      "title": "WebArena: A Realistic Web Environment for Building Autonomous Agents",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2307.13854",
+          "sha256": "f9731b92bc3d29a2ea7b5f9cb46b48540c76bc3f84a57e0c48fc37ea73107f95",
+          "bytes": 9128123
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2307.13854",
+          "sha256": "0efe45fc47277f4f157743b82e3136f92726644c9c404bf343c84b22739c8239",
+          "bytes": 9699248
+        }
+      ]
+    },
+    {
+      "anchor_id": "swe_bench",
+      "arxiv_id": "2310.06770",
+      "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2310.06770",
+          "sha256": "f7e8e1df64129742b8199a21a042734519a823a1dafd6f48f8f3ddcfb48ee296",
+          "bytes": 4533722
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2310.06770",
+          "sha256": "94f17e81e566501a16eaa542fa2bf3df26aeb731ed089d0393e384528d249701",
+          "bytes": 2455152
+        }
+      ]
+    },
+    {
+      "anchor_id": "swe_agent",
+      "arxiv_id": "2405.15793",
+      "title": "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2405.15793",
+          "sha256": "d171e0693060b910ceb2cddd0fd4bc7cae302005d42d0d8059bfdbe056c3adba",
+          "bytes": 4963538
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2405.15793",
+          "sha256": "3d2bafc2fd9e104fd204f7d4582260817c48b15133f7c1cf668dd081c2fbc1ab",
+          "bytes": 4825857
+        }
+      ]
+    },
+    {
+      "anchor_id": "agentless",
+      "arxiv_id": "2407.01489",
+      "title": "Agentless: Demystifying LLM-based Software Engineering Agents",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2407.01489",
+          "sha256": "1675c2dcd5ecaef47e8a4356062f60be642cee82e1bbacb044c9d047dce4c856",
+          "bytes": 1384716
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2407.01489",
+          "sha256": "87de90044fbfe3edb7b1a7403050151b19ef666f921d1f71c823f8b2c6878f2c",
+          "bytes": 669063
+        }
+      ]
+    },
+    {
+      "anchor_id": "openhands",
+      "arxiv_id": "2407.16741",
+      "title": "OpenHands: An Open Platform for AI Software Developers as Generalist Agents",
+      "pdf_only": false,
+      "has_source": true,
+      "files": [
+        {
+          "name": "paper.pdf",
+          "url": "https://arxiv.org/pdf/2407.16741",
+          "sha256": "5d802255c4a58104a06147ba736fee09569faf3c26f251e5e9b7eff5d7662c14",
+          "bytes": 3293124
+        },
+        {
+          "name": "source.tar.gz",
+          "url": "https://arxiv.org/e-print/2407.16741",
+          "sha256": "80626d5f9893642f1b30ec10fdfe915d7c423156088421b7a154c1023b8e13fe",
+          "bytes": 2569863
+        }
+      ]
+    }
+  ]
+}

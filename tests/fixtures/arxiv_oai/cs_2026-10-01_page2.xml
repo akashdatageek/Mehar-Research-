@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
+    <responseDate>2026-10-16T16:40:02Z</responseDate>
+                <request verb='ListRecords' resumptionToken='verb%3DListRecords%26metadataPrefix%3DarXivRaw%26from%3D2026-10-01%26until%3D2026-10-01%26set%3Dcs%26skip%3D1300'>http://oaipmh.arxiv.org/oai</request>
+
+
+    <ListRecords>
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2401.13937</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:CV</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2401.13937</id>
+        <submitter>Quang Trung Truong</submitter>
+            <version version="v1">
+                <date>Thu, 25 Jan 2024 04:39:48 GMT</date>
+                <size>27225kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Mon, 18 Mar 2024 05:45:07 GMT</date>
+                <size>36412kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v3">
+                <date>Wed, 30 Sep 2026 15:30:28 GMT</date>
+                <size>3760kb</size>
+            </version>
+        <title>DiDA: Video Object Segmentation with Distillation Learning of Deformable Attention</title>
+        <authors>Quang-Trung Truong, Duc Thanh Nguyen, Binh-Son Hua, Sai-Kit Yeung</authors>
+        <categories>cs.CV</categories>
+            <comments>ACCV 2026</comments>
+            <license>http://creativecommons.org/licenses/by/4.0/</license>
+            <abstract>Video object segmentation is a fundamental research problem in computer vision. Recent techniques have often applied attention mechanism to object representation learning from video sequences. However, due to temporal changes in the video data, attention maps may not well align with the objects of interest across video frames, causing accumulated errors in long-term video processing. In addition, existing techniques have utilised complex architectures, requiring highly computational complexity and hence limiting the ability to integrate video object segmentation into low-powered devices. To address these issues, we propose DiDA, a new method for video object segmentation based on Distillation Learning of Deformable Attention. Specifically, we devise a lightweight architecture for video object segmentation that is effectively adapted to temporal changes. This is enabled by deformable attention mechanism, where the keys and values capturing the memory of a video sequence in the attention module have flexible locations updated across frames. The learnt object representations are thus adaptive to both the spatial and temporal dimensions. We train the proposed architecture using a new knowledge distillation paradigm where deformable attention maps are integrated into the distillation loss. We qualitatively and quantitatively evaluate our method and compare it with existing methods on benchmark datasets including DAVIS 2016/2017 and YouTube-VOS 2018/2019. Experimental results verify the superiority of our method via its achieved state-of-the-art performance on YouTube-VOS18 dataset and optimal memory usage. Project page and code: https://github.com/quangtrungtruong/DiDA.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2406.02447</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:LG</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2406.02447</id>
+        <submitter>Riccardo Salami</submitter>
+            <version version="v1">
+                <date>Tue, 04 Jun 2024 16:12:27 GMT</date>
+                <size>1976kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Thu, 17 Oct 2024 09:52:10 GMT</date>
+                <size>2087kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v3">
+                <date>Wed, 23 Oct 2024 15:48:45 GMT</date>
+                <size>2087kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v4">
+                <date>Sat, 24 May 2025 09:52:52 GMT</date>
+                <size>1024kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v5">
+                <date>Wed, 30 Sep 2026 14:46:22 GMT</date>
+                <size>1845kb</size>
+            </version>
+        <title>Federated Class-Incremental Learning with Hierarchical Generative Prototypes</title>
+        <authors>Riccardo Salami, Pietro Buzzega, Matteo Mosconi, Mattia Verasani and Simone Calderara</authors>
+        <categories>cs.LG</categories>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>Federated Learning (FL) aims at unburdening the training of deep models by distributing computation across multiple devices (clients) while safeguarding data privacy. On top of that, Federated Continual Learning (FCL) also accounts for data distribution evolving over time, mirroring the dynamic nature of real-world environments. While previous studies have identified Catastrophic Forgetting and Client Drift as major factors of performance degradation in FCL, we shed light on the importance of Incremental Bias and Federated Bias, which cause models to prioritize classes that are recently introduced or locally predominant, respectively. Our proposal constrains both biases to the last layer by efficiently fine-tuning a pre-trained backbone using learnable prompts, resulting in clients that produce less biased representations and more biased classifiers. Therefore, instead of solely relying on parameter aggregation, we leverage generative prototypes to effectively balance the predictions of the global model. Our proposed methodology significantly improves the current state of the art across six datasets, each including three different scenarios.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2406.14506</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>cs:cs:DS</setSpec>
+            <setSpec>cs:cs:DM</setSpec>
+            <setSpec>math:math:CO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2406.14506</id>
+        <submitter>Calum MacRury</submitter>
+            <version version="v1">
+                <date>Thu, 20 Jun 2024 17:11:35 GMT</date>
+                <size>68kb</size>
+            </version>
+            <version version="v2">
+                <date>Tue, 08 Oct 2024 14:25:41 GMT</date>
+                <size>68kb</size>
+            </version>
+            <version version="v3">
+                <date>Wed, 30 Sep 2026 14:45:10 GMT</date>
+                <size>72kb</size>
+            </version>
+        <title>Online Matching and Contention Resolution for Edge Arrivals with Vanishing Probabilities</title>
+        <authors>Will Ma, Calum MacRury, Pranav Nuti</authors>
+        <categories>cs.DS cs.DM math.CO</categories>
+            <comments>Added a tight $0.510$ upper bound for free-order CRSs, and more discussion on concentrated OCRSs</comments>
+            <acm-class>None</acm-class>
+            <journal-ref>In EC 2024</journal-ref>
+            <license>http://arxiv.org/licenses/nonexclusive-distrib/1.0/</license>
+            <abstract>We study the performance of sequential contention resolution and matching algorithms on random graphs with vanishing edge probabilities. When the edges of the graph are processed in an adversarially-chosen order, we derive a new OCRS that is $0.382$-selectable, attaining the &#34;independence benchmark&#34; from the literature under the vanishing edge probabilities assumption. Complementary to this positive result, we show that no OCRS can be more than $0.390$-selectable, significantly improving upon the upper bound of $0.428$ from the literature. We also derive negative results that are specialized to bipartite graphs or subfamilies of OCRSs. Meanwhile, when the edges of the graph are processed in a uniformly random order, we show that the simple greedy contention resolution scheme which accepts all active and feasible edges is $1/2$-selectable. This result is tight due to a known upper bound. We then show that when the algorithm can choose the processing order, a slight tweak to the random order---give each vertex a random priority and process edges in lexicographic order---results in a strictly better contention resolution scheme that is $1-\ln(2-1/e)\approx0.510$-selectable. Moreover, we show that this bound is tight over any sequential contention resolution scheme, even one which may adaptively choose the order in which it processes edges. This provides a separation from the $0.544$ upper bound for offline contention resolution implied by the classic result of Karp and Sipser. Our positive results also apply to online matching on $1$-uniform random graphs with vanishing (non-identical) edge probabilities, extending and unifying some results from the random graphs literature.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <record>
+                <header>
+        <identifier>oai:arXiv.org:2408.13230</identifier>
+        <datestamp>2026-10-01</datestamp>
+            <setSpec>stat:stat:ML</setSpec>
+            <setSpec>cs:cs:LG</setSpec>
+            <setSpec>stat:stat:CO</setSpec>
+    </header>
+
+            <metadata>
+                        <arXivRaw xmlns="http://arxiv.org/OAI/arXivRaw/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://arxiv.org/OAI/arXivRaw/ https://oaipmh.arxiv.org/OAI/arXivRaw.xsd">
+        <id>2408.13230</id>
+        <submitter>Daniel Habermann</submitter>
+            <version version="v1">
+                <date>Fri, 23 Aug 2024 17:11:04 GMT</date>
+                <size>3398kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v2">
+                <date>Wed, 09 Apr 2025 13:38:39 GMT</date>
+                <size>4758kb</size>
+                    <source_type>D</source_type>
+            </version>
+            <version version="v3">
+                <date>Mon, 16 Jun 2025 10:48:51 GMT</date>
+                <size>4205kb</size>
+            </version>
+        <title>Amortized Bayesian Multilevel Models</title>
+        <authors>Daniel Habermann, Marvin Schmitt, Lars K\&#34;uhmichel, Andreas Bulling, Stefan T. Radev, Paul-Christian B\&#34;urkner</authors>
+        <categories>stat.ML cs.LG stat.CO</categories>
+            <comments>24 pages, 13 figures</comments>
+            <journal-ref>Bayesian Anal. Advance Publication 1-30 (2025)</journal-ref>
+            <doi>10.1214/25-BA1570</doi>
+            <license>http://creativecommons.org/licenses/by-sa/4.0/</license>
+            <abstract>Multilevel models (MLMs) are a central building block of the Bayesian workflow. They enable joint, interpretable modeling of data across hierarchical levels and provide a fully probabilistic quantification of uncertainty. Despite their well-recognized advantages, MLMs pose significant computational challenges, often rendering their estimation and evaluation intractable within reasonable time constraints. Recent advances in simulation-based inference offer promising solutions for addressing complex probabilistic models using deep generative networks. However, the utility and reliability of deep learning methods for estimating Bayesian MLMs remains largely unexplored, especially when compared with gold-standard samplers. To this end, we explore a family of neural network architectures that leverage the probabilistic factorization of multilevel models to facilitate efficient neural network training and subsequent near-instant posterior inference on unseen datasets. We test our method on several real-world case studies and provide comprehensive comparisons to Stan&#39;s gold standard sampler, where possible. Finally, we provide an open-source implementation of our methods to stimulate further research in the nascent field of amortized Bayesian inference.</abstract>
+    </arXivRaw>
+
+            </metadata>
+        </record>
+
+                    <resumptionToken/>
+
+    </ListRecords>
+</OAI-PMH>
