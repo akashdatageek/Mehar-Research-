@@ -1,0 +1,375 @@
+# Slice-1 anchor lineages: AI agents + harnesses / tools / skills (2022 -> today).
+#
+# Used by:
+#   P0-07  fixture downloader (papers with arxiv_id; `fixture` marks the 20 fixtures,
+#          `pdf_only: true` marks the >=3 used for the PDF fallback tests)
+#   P2-02  triage bootstrap positives (anchors + papers citing >=2 anchors)
+#   P6-05 / P8-03  anchor lineage check (each predecessor link should appear as a path
+#          in freeze(2025-12-31))
+#
+# Each entry: id, kind (paper|artifact), title, year, arxiv_id (papers) or url (artifacts),
+# predecessors: [{anchor, type, component?, note?}] where the link reads
+#   <this> --type--> <anchor>   (e.g. ReAct --extends--> CoT)
+# `type` uses the edge enum in PLAN.md; `component` the agent-component enum.
+#
+# STATUS: curated by Claude Code from well-known literature; Mehar should review the
+# links (especially the `type` of each) before gate H1. arXiv ids are checked by P0-07.
+
+anchors:
+  # ---- Lineage 1: prompting -> reasoning -> acting ---------------------------------
+  - id: cot
+    kind: paper
+    title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+    year: 2022
+    arxiv_id: "2201.11903"
+    fixture: true
+    predecessors: []
+
+  - id: self_consistency
+    kind: paper
+    title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"
+    year: 2022
+    arxiv_id: "2203.11171"
+    predecessors:
+      - {anchor: cot, type: extends, component: prompting}
+
+  - id: mrkl
+    kind: paper
+    title: "MRKL Systems: A modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning"
+    year: 2022
+    arxiv_id: "2205.00445"
+    predecessors: []
+
+  - id: webgpt
+    kind: paper
+    title: "WebGPT: Browser-assisted question-answering with human feedback"
+    year: 2021
+    arxiv_id: "2112.09332"
+    note: "pre-2022 predecessor kept for lineage context"
+    predecessors: []
+
+  - id: react
+    kind: paper
+    title: "ReAct: Synergizing Reasoning and Acting in Language Models"
+    year: 2022
+    arxiv_id: "2210.03629"
+    fixture: true
+    predecessors:
+      - {anchor: cot, type: extends, component: planner}
+      - {anchor: webgpt, type: compares_against, component: action_space}
+      - {anchor: mrkl, type: combines, component: tool_interface}
+
+  - id: self_ask
+    kind: paper
+    title: "Measuring and Narrowing the Compositionality Gap in Language Models"
+    year: 2022
+    arxiv_id: "2210.03350"
+    predecessors:
+      - {anchor: cot, type: extends, component: prompting}
+
+  - id: pal
+    kind: paper
+    title: "PAL: Program-aided Language Models"
+    year: 2022
+    arxiv_id: "2211.10435"
+    fixture: true
+    predecessors:
+      - {anchor: cot, type: replaces_component, component: action_space, note: "reasoning as code executed by interpreter"}
+
+  - id: tot
+    kind: paper
+    title: "Tree of Thoughts: Deliberate Problem Solving with Large Language Models"
+    year: 2023
+    arxiv_id: "2305.10601"
+    fixture: true
+    predecessors:
+      - {anchor: cot, type: extends, component: planner}
+      - {anchor: self_consistency, type: compares_against}
+
+  - id: rewoo
+    kind: paper
+    title: "ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models"
+    year: 2023
+    arxiv_id: "2305.18323"
+    predecessors:
+      - {anchor: react, type: replaces_component, component: planner}
+
+  - id: self_refine
+    kind: paper
+    title: "Self-Refine: Iterative Refinement with Self-Feedback"
+    year: 2023
+    arxiv_id: "2303.17651"
+    predecessors:
+      - {anchor: cot, type: compares_against}
+
+  - id: reflexion
+    kind: paper
+    title: "Reflexion: Language Agents with Verbal Reinforcement Learning"
+    year: 2023
+    arxiv_id: "2303.11366"
+    fixture: true
+    predecessors:
+      - {anchor: react, type: extends, component: critic_verifier}
+
+  - id: lats
+    kind: paper
+    title: "Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models"
+    year: 2023
+    arxiv_id: "2310.04406"
+    predecessors:
+      - {anchor: tot, type: combines, component: planner}
+      - {anchor: react, type: combines, component: action_space}
+      - {anchor: reflexion, type: combines, component: critic_verifier}
+
+  # ---- Lineage 2: tool use and tool interfaces --------------------------------------
+  - id: toolformer
+    kind: paper
+    title: "Toolformer: Language Models Can Teach Themselves to Use Tools"
+    year: 2023
+    arxiv_id: "2302.04761"
+    fixture: true
+    predecessors:
+      - {anchor: mrkl, type: compares_against, component: tool_interface}
+
+  - id: hugginggpt
+    kind: paper
+    title: "HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face"
+    year: 2023
+    arxiv_id: "2303.17580"
+    predecessors:
+      - {anchor: mrkl, type: extends, component: orchestration}
+
+  - id: api_bank
+    kind: paper
+    title: "API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs"
+    year: 2023
+    arxiv_id: "2304.08244"
+    predecessors:
+      - {anchor: toolformer, type: evaluates_on, component: tool_interface, note: "benchmark built for Toolformer-style tool use"}
+
+  - id: gorilla
+    kind: paper
+    title: "Gorilla: Large Language Model Connected with Massive APIs"
+    year: 2023
+    arxiv_id: "2305.15334"
+    fixture: true
+    predecessors:
+      - {anchor: toolformer, type: extends, component: tool_interface}
+
+  - id: toolllm
+    kind: paper
+    title: "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs"
+    year: 2023
+    arxiv_id: "2307.16789"
+    fixture: true
+    pdf_only: true
+    predecessors:
+      - {anchor: toolformer, type: extends, component: training_signal}
+      - {anchor: react, type: compares_against, component: planner}
+      - {anchor: gorilla, type: compares_against}
+
+  - id: codeact
+    kind: paper
+    title: "Executable Code Actions Elicit Better LLM Agents"
+    year: 2024
+    arxiv_id: "2402.01030"
+    fixture: true
+    predecessors:
+      - {anchor: react, type: replaces_component, component: action_space, note: "code instead of JSON/text tool calls"}
+      - {anchor: pal, type: extends, component: action_space}
+
+  - id: mcp_spec
+    kind: artifact
+    title: "Model Context Protocol specification"
+    year: 2024
+    url: "https://modelcontextprotocol.io/specification"
+    predecessors: []
+
+  # ---- Lineage 3: multi-agent orchestration -----------------------------------------
+  - id: camel
+    kind: paper
+    title: "CAMEL: Communicative Agents for \"Mind\" Exploration of Large Language Model Society"
+    year: 2023
+    arxiv_id: "2303.17760"
+    fixture: true
+    predecessors: []
+
+  - id: chatdev
+    kind: paper
+    title: "ChatDev: Communicative Agents for Software Development"
+    year: 2023
+    arxiv_id: "2307.07924"
+    predecessors:
+      - {anchor: camel, type: extends, component: orchestration}
+
+  - id: metagpt
+    kind: paper
+    title: "MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework"
+    year: 2023
+    arxiv_id: "2308.00352"
+    fixture: true
+    pdf_only: true
+    predecessors:
+      - {anchor: camel, type: extends, component: orchestration}
+      - {anchor: chatdev, type: compares_against}
+
+  - id: autogen
+    kind: paper
+    title: "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"
+    year: 2023
+    arxiv_id: "2308.08155"
+    fixture: true
+    predecessors:
+      - {anchor: camel, type: extends, component: orchestration}
+
+  # ---- Lineage 4: memory and skills ---------------------------------------------------
+  - id: generative_agents
+    kind: paper
+    title: "Generative Agents: Interactive Simulacra of Human Behavior"
+    year: 2023
+    arxiv_id: "2304.03442"
+    fixture: true
+    predecessors: []
+
+  - id: voyager
+    kind: paper
+    title: "Voyager: An Open-Ended Embodied Agent with Large Language Models"
+    year: 2023
+    arxiv_id: "2305.16291"
+    fixture: true
+    predecessors:
+      - {anchor: react, type: compares_against}
+      - {anchor: reflexion, type: compares_against}
+
+  - id: memgpt
+    kind: paper
+    title: "MemGPT: Towards LLMs as Operating Systems"
+    year: 2023
+    arxiv_id: "2310.08560"
+    fixture: true
+    pdf_only: true
+    predecessors:
+      - {anchor: generative_agents, type: replaces_component, component: memory}
+
+  - id: agent_workflow_memory
+    kind: paper
+    title: "Agent Workflow Memory"
+    year: 2024
+    arxiv_id: "2409.07429"
+    predecessors:
+      - {anchor: voyager, type: transplants_domain, component: memory, note: "reusable skills/workflows from Minecraft to web navigation"}
+      - {anchor: mind2web, type: evaluates_on, component: environment}
+      - {anchor: webarena, type: evaluates_on, component: environment}
+
+  - id: agent_skills
+    kind: artifact
+    title: "Agent Skills (Anthropic): equipping agents for the real world"
+    year: 2025
+    url: "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills"
+    predecessors:
+      - {anchor: mcp_spec, type: compares_against, component: tool_interface}
+
+  # ---- Lineage 5: agent benchmarks and environments -------------------------------------
+  - id: mind2web
+    kind: paper
+    title: "Mind2Web: Towards a Generalist Agent for the Web"
+    year: 2023
+    arxiv_id: "2306.06070"
+    predecessors: []
+
+  - id: webarena
+    kind: paper
+    title: "WebArena: A Realistic Web Environment for Building Autonomous Agents"
+    year: 2023
+    arxiv_id: "2307.13854"
+    fixture: true
+    predecessors:
+      - {anchor: react, type: compares_against}
+
+  - id: visualwebarena
+    kind: paper
+    title: "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks"
+    year: 2024
+    arxiv_id: "2401.13649"
+    predecessors:
+      - {anchor: webarena, type: extends, component: environment}
+
+  - id: agentbench
+    kind: paper
+    title: "AgentBench: Evaluating LLMs as Agents"
+    year: 2023
+    arxiv_id: "2308.03688"
+    predecessors:
+      - {anchor: react, type: compares_against}
+
+  - id: gaia
+    kind: paper
+    title: "GAIA: a benchmark for General AI Assistants"
+    year: 2023
+    arxiv_id: "2311.12983"
+    predecessors:
+      - {anchor: agentbench, type: compares_against}
+
+  - id: osworld
+    kind: paper
+    title: "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments"
+    year: 2024
+    arxiv_id: "2404.07972"
+    predecessors:
+      - {anchor: webarena, type: extends, component: environment}
+
+  - id: tau_bench
+    kind: paper
+    title: "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains"
+    year: 2024
+    arxiv_id: "2406.12045"
+    predecessors:
+      - {anchor: react, type: compares_against, component: tool_interface}
+
+  # ---- Lineage 6: software-engineering agents and harnesses -----------------------------
+  - id: swe_bench
+    kind: paper
+    title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"
+    year: 2023
+    arxiv_id: "2310.06770"
+    fixture: true
+    predecessors: []
+
+  - id: swe_bench_verified
+    kind: artifact
+    title: "Introducing SWE-bench Verified"
+    year: 2024
+    url: "https://openai.com/index/introducing-swe-bench-verified/"
+    predecessors:
+      - {anchor: swe_bench, type: subset_of, note: "ER check: must not merge with SWE-bench (P5-06)"}
+
+  - id: swe_agent
+    kind: paper
+    title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"
+    year: 2024
+    arxiv_id: "2405.15793"
+    fixture: true
+    predecessors:
+      - {anchor: react, type: extends, component: action_space, note: "agent-computer interface"}
+      - {anchor: swe_bench, type: evaluates_on}
+
+  - id: agentless
+    kind: paper
+    title: "Agentless: Demystifying LLM-based Software Engineering Agents"
+    year: 2024
+    arxiv_id: "2407.01489"
+    fixture: true
+    predecessors:
+      - {anchor: swe_agent, type: refutes_or_contradicts, component: orchestration, note: "fixed pipeline competitive with agent loop"}
+      - {anchor: swe_bench, type: evaluates_on}
+
+  - id: openhands
+    kind: paper
+    title: "OpenHands: An Open Platform for AI Software Developers as Generalist Agents"
+    year: 2024
+    arxiv_id: "2407.16741"
+    fixture: true
+    predecessors:
+      - {anchor: codeact, type: implements, component: action_space}
+      - {anchor: swe_agent, type: compares_against}
+      - {anchor: swe_bench, type: evaluates_on}

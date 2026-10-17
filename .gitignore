@@ -1,0 +1,28 @@
+# secrets
+.env
+.env.*
+!.env.example
+
+# local data and blobs (CLAUDE.md: never commit)
+data/
+blobs/
+*.blob
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+build/
+dist/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# tooling
+mlruns/
+*.log
+.DS_Store

@@ -1,0 +1,28 @@
+# claude-progress.txt — append-only build log (newest at bottom)
+
+## 2026-10-17 — Session 1 (initializer) — P0-01 Repo skeleton and tooling: PASS
+What changed
+- Added spec files: PLAN.md, CLAUDE.md, feature_list.json, KICKOFF.md.
+- uv project (pyproject.toml, uv.lock), Python 3.12 pinned (requires-python >=3.12,<3.13);
+  init.sh installs 3.12 via uv if missing.
+- src/rlg/ layout per CLAUDE.md (config, llm, queue, ingest, triage, parse, extract, verify,
+  er, store, serve, analytics, eval, plan, execute) + Typer CLI `rlg version`.
+- ruff (lint+format), mypy --strict on src/, pytest + hypothesis. Makefile: up, down, test,
+  lint, fmt. `make up/down` are no-ops until docker-compose.yml exists (P0-02).
+- init.sh: idempotent; uv sync, creates data/ dirs, starts Docker + runs Alembic only when
+  docker-compose.yml / alembic.ini exist and Docker is reachable.
+- .env.example, .gitignore (.env, data/, blobs, caches).
+- config/anchors.yaml: 40 slice-1 anchors (37 papers, 3 artifacts) in 6 lineages, 48
+  predecessor links typed with the PLAN.md edge/component enums; 20 marked `fixture: true`,
+  3 of those `pdf_only: true` (ToolLLM, MetaGPT, MemGPT) for P0-07.
+- Stubs: config/seed_concepts.yaml, artifacts.yaml, web_sources.yaml.
+- tests/unit/test_skeleton.py: module imports, CLI, anchors.yaml consistency, stubs parse.
+Verification: make lint OK; make test 4 passed; ./init.sh run twice OK.
+Dependencies added: typer, pydantic, pyyaml (runtime); ruff, mypy, pytest, hypothesis,
+  types-pyyaml (dev). pyyaml is needed for config/*.yaml (PLAN.md stack).
+Open issues
+- Anchor links were curated from memory of the literature; Mehar should review link types
+  before gate H1. arXiv ids get checked when P0-07 downloads fixtures.
+- Docker is not available in this cloud container, so P0-02 integration tests cannot run
+  here; next session needs a machine with Docker.
+Next eligible feature: P0-02 (Postgres + pgvector via Docker).
