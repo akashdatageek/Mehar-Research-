@@ -59,3 +59,24 @@ Dependencies added: pydantic-settings (typed .env loading; avoids hand-rolled pa
 Open issues
 - training_cutoff for Haiku 5.5 / Sonnet 5.5 is a placeholder (2026-06-01) — confirm from
   model cards before the leakage probe (P9-02) relies on it.
+
+## 2026-10-17 — Session 2 — P0-04 Provider-agnostic LLM client: PASS
+What changed
+- src/rlg/llm/prompts.py: load_prompt(prompt_id) reads prompts/<id>.md, sha256 of file bytes
+  = prompt_hash; render() fills {{name}} placeholders (non-str JSON-encoded), PromptError
+  on missing input / unknown or unsafe id.
+- src/rlg/llm/providers.py: Provider protocol; AnthropicProvider (messages.create with
+  output_config json_schema; objects closed with additionalProperties:false; refusal ->
+  ProviderError); GeminiProvider (google-genai, response_json_schema; thoughts tokens counted
+  as output). Only this file imports vendor SDKs.
+- src/rlg/llm/client.py: LLMClient.call / call_with_meta and module-level llm.call(prompt_id,
+  schema, inputs, tier). Tier -> provider/model from models.yaml; system prompt
+  prompts/_json_output.md carries the schema; Pydantic validation; one repair retry with
+  prompts/_json_repair.md; SchemaError after that. CallResult keeps attempts/tokens for P0-05.
+- tests/fakes.py FakeProvider; tests/unit/test_llm_client.py.
+Dependencies added: anthropic, google-genai (the two provider adapters PLAN.md calls for).
+Open issues
+- Adapters are type-checked but not exercised live (no API keys here). First live run
+  should confirm Anthropic accepts Pydantic-generated schemas (e.g. `title`, numeric
+  bounds) under structured outputs; if not, strip unsupported keywords in closed_schema().
+- Refusal fallbacks (server-side `fallbacks`) not wired; refusals raise ProviderError.
