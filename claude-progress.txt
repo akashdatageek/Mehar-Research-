@@ -180,3 +180,25 @@ What changed
   output validated against a Pydantic schema. AnthropicProvider still untested live (no
   ANTHROPIC_API_KEY).
 Phase P0 complete -> tag p0-done.
+
+## 2026-10-17 — Session 3 — P1-02 arXiv OAI-PMH harvester: PASS
+What changed
+- src/rlg/ingest/http.py: PoliteHttp (RateLimiter, User-Agent, 429/503 Retry-After with up
+  to 3 retries, 404 -> None, HttpError otherwise; injectable transport).
+- src/rlg/ingest/arxiv_oai.py: endpoint https://oaipmh.arxiv.org/oai (export.arxiv.org/oai2
+  now 301-redirects there), metadataPrefix arXivRaw, default sets cs + stat:stat:ML.
+  parse_list_records (versions with their own dates in UTC, authors split without
+  affiliations, categories, DOI, license; deleted records skipped; noRecordsMatch -> empty),
+  iter_pages follows resumption tokens, store_records upserts paper on arxiv_id only when a
+  field changed, paper_version + external_id (arxiv, doi) insert-or-ignore, harvest().
+- src/rlg/ingest/jobs.py: queue kind `arxiv.harvest_day`. CLI: `rlg ingest harvest --from
+  --until [--set ...] [--enqueue]` (enqueue = one dedup'd job per day).
+- tests/fixtures/arxiv_oai/: two real ListRecords pages (cs, 2026-10-01), trimmed to 6 and
+  4 records, real resumption token kept. tests/arxiv_fakes.py serves them.
+- Tests: tests/unit/test_arxiv_oai.py (parsing, token, UTC dates, authors, OAI errors,
+  >=3 s between requests with fake clock, Retry-After), tests/integration/
+  test_arxiv_harvest.py (re-harvest inserts 0 rows; changed metadata updates, no insert).
+Live check: harvested stat:stat:ML for 2026-10-01 -> 72 papers, 110 versions; second run
+  inserted 0 rows. Note one cs day is ~1.7k records (datestamp includes updated papers).
+Decision: OAI listing pages are not stored as raw_document (their responseDate changes on
+  every fetch, so re-harvests would always add rows); the paper rows are the record.
