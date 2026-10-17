@@ -221,3 +221,13 @@ What changed
 Live check: `rlg ingest daily --day 2026-10-15` stored 714 papers (re-run 0);
   `rlg ingest fetch 2610.22372` stored a 14 MB PDF and 13.6 MB e-print.
 Note: e-print URLs 301-redirect to /src/<id>; urllib follows redirects.
+
+## 2026-10-17 — Session 3 — P1-04 OpenAlex and Semantic Scholar enrichment: BLOCKED (not started)
+- Needs OPENALEX_API_KEY and S2_API_KEY in .env. From this environment, anonymous
+  requests fail: Semantic Scholar returns 429 on every try; OpenAlex reports
+  x-ratelimit-remaining 0 / remaining-usd 0 for the shared anonymous budget.
+- Data-quality note for P1-06: OpenAlex currently returns a wrong title for
+  doi:10.48550/arXiv.2210.03629 (ReAct) -> W4304195432 "Distributing Accountability, Not
+  Capability: ...". Cross-source dedup must not trust OpenAlex titles blindly.
+- P1-05 (GitHub/HF/web fetchers) is also eligible but comes after P1-04 in order and
+  needs GITHUB_TOKEN (and HF_TOKEN for gated cards).
