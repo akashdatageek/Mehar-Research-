@@ -143,3 +143,12 @@ Blocker
   ARXIV_CONTACT_EMAIL in .env). Mark P0-07 passing after that run and committing
   tests/fixtures/manifest.json.
 - Downstream features that need the papers: P3-02, P4-02 (via P3-02), and the e2e paths.
+
+## 2026-10-17 — Session 2 — P0-08 P0 architecture doc: PASS
+What changed
+- docs/architecture/llm.md and docs/architecture/queue.md per the CLAUDE.md template
+  (purpose, classes/functions table, prompts, tables read/written, deterministic vs LLM,
+  failure modes, Mermaid diagrams).
+- tests/unit/test_architecture_docs.py: every name in rlg.llm.__all__ / rlg.queue.__all__
+  and every table the module writes must appear in its doc, plus all template headings.
+Notes: phase P0 is not tagged `p0-done` yet because P0-07 is blocked on arXiv access.
