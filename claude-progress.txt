@@ -80,3 +80,23 @@ Open issues
   should confirm Anthropic accepts Pydantic-generated schemas (e.g. `title`, numeric
   bounds) under structured outputs; if not, strip unsupported keywords in closed_schema().
 - Refusal fallbacks (server-side `fallbacks`) not wired; refusals raise ProviderError.
+
+## 2026-10-17 — Session 2 — P0-05 LLM cache, cost ledger, budget guard: PASS
+What changed
+- migrations/versions/0002_llm_ledger.py: llm_call (PLAN.md columns + tier, cache_key,
+  attempts, error; index on started_at) and llm_cache (cache_key PK, output_json JSONB).
+- src/rlg/store/tables.py: SQLAlchemy Core mirrors of the tables.
+- src/rlg/llm/ledger.py: SqlLedger (get_cached, put_cache first-writer-wins, spent_since,
+  record), CallRecord, BudgetExceeded.
+- src/rlg/llm/client.py: cache key = sha256(input_sha256, prompt_hash, model,
+  schema_version) where schema_version = hash of the Pydantic JSON schema. Cache hit ->
+  no provider call, row with cache_hit=true, cost 0. Budget guard runs before each provider
+  request (incl. the repair retry) using a worst-case estimate (chars/3 input tokens +
+  tier max_output_tokens) against today's UTC spend; also the triage_daily_usd cap.
+  Exactly one llm_call row per call (success, cache hit, budget refusal, schema failure,
+  provider error); failed calls still carry their token cost.
+- default_client() wires the Postgres ledger; LLMClient(ledger=None) only for unit tests.
+- tests/integration/test_llm_ledger.py (fake provider + fake clock).
+Open issues
+- Budget guard is per-process read-then-call; concurrent workers could overshoot by at most
+  one worst-case call each. Fine at current scale; revisit if P6 backfill runs many workers.
