@@ -1,6 +1,8 @@
 # CLAUDE.md — Research-Lineage Graph
 
-Read this every session. `PLAN.md` is the spec; `feature_list.json` is the work queue; `claude-progress.txt` is the log.
+Read this every session. `PLAN.md` (v3.1) is the primary spec; `docs/plan/PLAN_v2_base.md` applies only where v3.1 is silent (data model, stack, Steps 7–12 detail). `feature_list.json` is the work queue; `claude-progress.txt` is the log.
+
+Before starting a phase, read that step's section in `PLAN.md` and, where one exists, its research report in `docs/research/`. They explain the chosen methods, thresholds and pitfalls, and they are the reason behind each design choice. The approved deviations in `PLAN.md` are already signed off; build them as described.
 
 ## Session protocol
 1. Read `claude-progress.txt`, `git log --oneline -20`, and `feature_list.json`.
@@ -22,6 +24,8 @@ Read this every session. `PLAN.md` is the spec; `feature_list.json` is the work 
 - Full text and blobs stay local. UI/API expose at most 2-sentence quotes plus links.
 - Respect rate limits: Semantic Scholar 1 RPS, OpenAlex keyed budget, arXiv polite (≥3 s between requests, user-agent with contact).
 - Prefer simple: no new service or dependency without a note in `claude-progress.txt` explaining why.
+- Integration tests must fail, not skip, when Postgres is unreachable during `make test`.
+- Never put personal data (emails, names, keys) into code, tests, fixtures or requests; read contact details only from `.env`.
 
 ## Layout
 ```

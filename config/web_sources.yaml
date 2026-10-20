@@ -1,6 +1,0 @@
-# Curated blogs/specs fetched and versioned in P1-05. Stub.
-version: 0
-sources:
-  - {kind: spec, url: "https://modelcontextprotocol.io/specification"}
-  - {kind: blog, url: "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills"}
-  - {kind: blog, url: "https://openai.com/index/introducing-swe-bench-verified/"}
