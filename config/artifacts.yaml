@@ -1,9 +1,0 @@
-# Curated artifacts fetched in P1-05 (GitHub repos, HF model cards). Stub.
-# kind: repo|model|spec|blog|docs
-version: 0
-artifacts:
-  - {kind: repo, url: "https://github.com/SWE-agent/SWE-agent"}
-  - {kind: repo, url: "https://github.com/All-Hands-AI/OpenHands"}
-  - {kind: repo, url: "https://github.com/microsoft/autogen"}
-  - {kind: repo, url: "https://github.com/geekan/MetaGPT"}
-  - {kind: repo, url: "https://github.com/modelcontextprotocol/modelcontextprotocol"}
