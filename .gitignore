@@ -8,3 +8,4 @@ tests/fixtures/papers/
 .ruff_cache/
 .pytest_cache/
 mlruns/
+*.egg-info/

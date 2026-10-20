@@ -1,0 +1,155 @@
+# Niche definition for Step 2 (Filter / triage). PLAN.md Step 2, item 0.
+#
+# Used by:
+#   P2-01  Layer 1 rules (categories + keywords below)
+#   P2-02  bootstrap labels (in_anchors as positives; near_miss_out as hard negatives)
+#   P2-05  Layer 2 scorer (kNN-to-anchor feature uses in_anchors; near misses as negatives)
+#   P2-06  Layer 3 cheap-LLM prompt (definition + include/exclude lists go into
+#          prompts/<triage prompt>.md, never inline)
+#
+# arXiv ids and titles verified against the arXiv API on 2026-10-20.
+# STATUS: draft by Claude Code; Mehar should review the definition and the out list
+# before gate H0.
+
+version: 1
+
+definition: >-
+  Research on systems in which a large language model (or vision-language model) acts as
+  an agent: it chooses actions over multiple steps, calls tools, APIs or code, plans,
+  keeps memory, coordinates with other agents, or is run inside a harness/scaffold.
+  Includes the harnesses, tool interfaces and protocols (e.g. MCP), agent skills and
+  skill formats, agent training on trajectories, and the benchmarks/environments built
+  to evaluate such agents. Scope is 2022 to today.
+
+include:
+  - LLM-based agents that act in an environment (web, OS, code repo, game, embodied) via an LLM policy
+  - tool use, function calling, API calling, code-as-action
+  - planning, search over reasoning/action trees, self-reflection and self-critique loops
+  - agent memory (episodic, retrieval-based, workflow/skill libraries)
+  - multi-agent LLM systems (role-playing, debate, orchestration frameworks)
+  - harnesses / scaffolds / agent-computer interfaces, tool protocols, agent skills
+  - agent benchmarks and environments, and evaluation methodology for agents
+  - training LLMs for agentic behaviour (trajectory fine-tuning, RL on agent tasks)
+  - prompting methods that agents build on (chain-of-thought lineage) when the paper is an agent ancestor
+
+exclude:
+  - reinforcement-learning agents without a language-model policy (robotics, games, MARL)
+  - classical agent-based simulation / multi-agent systems (ABM, BDI) without LLMs
+  - chatbots and assistants that do not use tools or act over multiple steps
+  - LLM pretraining, instruction tuning, alignment and general capability evals with no agent component
+  - retrieval-augmented generation with a fixed retrieve-then-read pipeline (no agentic choice)
+  - code generation models evaluated only on single-shot generation
+  - vision-language-action robot policies trained end to end (no LLM planner, tools or memory)
+
+# Layer 1 (P2-01) starting values. [assumption] Deliberately generous; recall is measured
+# on the gold set. Papers within one citation hop of an anchor bypass Layer 1.
+layer1:
+  categories: [cs.CL, cs.AI, cs.LG, cs.SE, cs.MA, cs.IR, cs.HC]
+  keywords:
+    - agent
+    - agentic
+    - tool use
+    - tool-use
+    - tool learning
+    - function calling
+    - api call
+    - planning
+    - planner
+    - multi-agent
+    - harness
+    - scaffold
+    - mcp
+    - model context protocol
+    - skill
+    - memory
+    - reflection
+    - self-refine
+    - web navigation
+    - computer use
+    - gui
+    - swe-bench
+    - autonomous
+
+# ~40 positive examples. `anchor` points into config/anchors.yaml. ALFWorld (2020, a text
+# environment for RL agents) is an anchor for lineage context but not an in-niche example.
+in_anchors:
+  - {arxiv_id: "2201.11903", anchor: cot, title: "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"}
+  - {arxiv_id: "2203.11171", anchor: self_consistency, title: "Self-Consistency Improves Chain of Thought Reasoning in Language Models"}
+  - {arxiv_id: "2205.00445", anchor: mrkl, title: "MRKL Systems: A modular, neuro-symbolic architecture that combines large language models, external knowledge sources and discrete reasoning"}
+  - {arxiv_id: "2112.09332", anchor: webgpt, title: "WebGPT: Browser-assisted question-answering with human feedback"}
+  - {arxiv_id: "2207.01206", anchor: webshop, title: "WebShop: Towards Scalable Real-World Web Interaction with Grounded Language Agents"}
+  - {arxiv_id: "2210.03629", anchor: react, title: "ReAct: Synergizing Reasoning and Acting in Language Models"}
+  - {arxiv_id: "2210.03350", anchor: self_ask, title: "Measuring and Narrowing the Compositionality Gap in Language Models"}
+  - {arxiv_id: "2211.10435", anchor: pal, title: "PAL: Program-aided Language Models"}
+  - {arxiv_id: "2305.10601", anchor: tot, title: "Tree of Thoughts: Deliberate Problem Solving with Large Language Models"}
+  - {arxiv_id: "2305.18323", anchor: rewoo, title: "ReWOO: Decoupling Reasoning from Observations for Efficient Augmented Language Models"}
+  - {arxiv_id: "2303.17651", anchor: self_refine, title: "Self-Refine: Iterative Refinement with Self-Feedback"}
+  - {arxiv_id: "2303.11366", anchor: reflexion, title: "Reflexion: Language Agents with Verbal Reinforcement Learning"}
+  - {arxiv_id: "2310.04406", anchor: lats, title: "Language Agent Tree Search Unifies Reasoning Acting and Planning in Language Models"}
+  - {arxiv_id: "2302.04761", anchor: toolformer, title: "Toolformer: Language Models Can Teach Themselves to Use Tools"}
+  - {arxiv_id: "2303.17580", anchor: hugginggpt, title: "HuggingGPT: Solving AI Tasks with ChatGPT and its Friends in Hugging Face"}
+  - {arxiv_id: "2304.08244", anchor: api_bank, title: "API-Bank: A Comprehensive Benchmark for Tool-Augmented LLMs"}
+  - {arxiv_id: "2305.15334", anchor: gorilla, title: "Gorilla: Large Language Model Connected with Massive APIs"}
+  - {arxiv_id: "2307.16789", anchor: toolllm, title: "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs"}
+  - {arxiv_id: "2402.01030", anchor: codeact, title: "Executable Code Actions Elicit Better LLM Agents"}
+  - {arxiv_id: "2303.17760", anchor: camel, title: "CAMEL: Communicative Agents for \"Mind\" Exploration of Large Language Model Society"}
+  - {arxiv_id: "2307.07924", anchor: chatdev, title: "ChatDev: Communicative Agents for Software Development"}
+  - {arxiv_id: "2308.00352", anchor: metagpt, title: "MetaGPT: Meta Programming for A Multi-Agent Collaborative Framework"}
+  - {arxiv_id: "2308.08155", anchor: autogen, title: "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation"}
+  - {arxiv_id: "2304.03442", anchor: generative_agents, title: "Generative Agents: Interactive Simulacra of Human Behavior"}
+  - {arxiv_id: "2305.16291", anchor: voyager, title: "Voyager: An Open-Ended Embodied Agent with Large Language Models"}
+  - {arxiv_id: "2310.08560", anchor: memgpt, title: "MemGPT: Towards LLMs as Operating Systems"}
+  - {arxiv_id: "2409.07429", anchor: agent_workflow_memory, title: "Agent Workflow Memory"}
+  - {arxiv_id: "2306.06070", anchor: mind2web, title: "Mind2Web: Towards a Generalist Agent for the Web"}
+  - {arxiv_id: "2307.13854", anchor: webarena, title: "WebArena: A Realistic Web Environment for Building Autonomous Agents"}
+  - {arxiv_id: "2401.13649", anchor: visualwebarena, title: "VisualWebArena: Evaluating Multimodal Agents on Realistic Visual Web Tasks"}
+  - {arxiv_id: "2308.03688", anchor: agentbench, title: "AgentBench: Evaluating LLMs as Agents"}
+  - {arxiv_id: "2311.12983", anchor: gaia, title: "GAIA: a benchmark for General AI Assistants"}
+  - {arxiv_id: "2404.07972", anchor: osworld, title: "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments"}
+  - {arxiv_id: "2406.12045", anchor: tau_bench, title: "tau-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains"}
+  - {arxiv_id: "2310.06770", anchor: swe_bench, title: "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?"}
+  - {arxiv_id: "2405.15793", anchor: swe_agent, title: "SWE-agent: Agent-Computer Interfaces Enable Automated Software Engineering"}
+  - {arxiv_id: "2407.01489", anchor: agentless, title: "Agentless: Demystifying LLM-based Software Engineering Agents"}
+  - {arxiv_id: "2407.16741", anchor: openhands, title: "OpenHands: An Open Platform for AI Software Developers as Generalist Agents"}
+  - {arxiv_id: "2310.05915", anchor: fireact, title: "FireAct: Toward Language Agent Fine-tuning"}
+  - {arxiv_id: "2310.12823", anchor: agenttuning, title: "AgentTuning: Enabling Generalized Agent Abilities for LLMs"}
+  - {arxiv_id: "2412.21139", anchor: swe_gym, title: "Training Software Engineering Agents and Verifiers with SWE-Gym"}
+  - {arxiv_id: "2504.21798", anchor: swe_smith, title: "SWE-smith: Scaling Data for Software Engineering Agents"}
+  - {arxiv_id: "2309.02427", title: "Cognitive Architectures for Language Agents", note: "agent architecture framework (memory, action space, decision loop)"}
+  - {arxiv_id: "2204.01691", title: "Do As I Can, Not As I Say: Grounding Language in Robotic Affordances", note: "LLM as planner over a skill library; contrast with RT-2 in the out list"}
+
+# Near-miss negatives: things a keyword/category filter would let through but that are
+# out of scope. `why` names the exclude rule it falls under.
+near_miss_out:
+  # RL / robotics / embodied agents without an LLM policy
+  - {arxiv_id: "1909.07528", title: "Emergent Tool Use From Multi-Agent Autocurricula", why: rl_no_llm}
+  - {arxiv_id: "1902.04043", title: "The StarCraft Multi-Agent Challenge", why: rl_no_llm}
+  - {arxiv_id: "1911.10635", title: "Multi-Agent Reinforcement Learning: A Selective Overview of Theories and Algorithms", why: rl_no_llm}
+  - {arxiv_id: "2301.04104", title: "Mastering Diverse Domains through World Models", why: rl_no_llm}
+  - {arxiv_id: "2205.06175", title: "A Generalist Agent", why: rl_no_llm}
+  - {arxiv_id: "2206.11795", title: "Video PreTraining (VPT): Learning to Act by Watching Unlabeled Online Videos", why: rl_no_llm}
+  - {arxiv_id: "2206.08853", title: "MineDojo: Building Open-Ended Embodied Agents with Internet-Scale Knowledge", why: rl_no_llm}
+  - {arxiv_id: "1904.01201", title: "Habitat: A Platform for Embodied AI Research", why: rl_no_llm}
+  - {arxiv_id: "2307.15818", title: "RT-2: Vision-Language-Action Models Transfer Web Knowledge to Robotic Control", why: vla_policy}
+  # classical agent-based simulation and multi-agent systems
+  - {arxiv_id: "2004.13332", title: "The AI Economist: Improving Equality and Productivity with AI-Driven Tax Policies", why: abm_simulation}
+  - {arxiv_id: "2311.01901", title: "Agent-based Modelling of Credit Card Promotions", why: abm_simulation}
+  - {arxiv_id: "2501.09429", title: "ADAGE: A generic two-layer framework for adaptive agent based modelling", why: abm_simulation}
+  - {arxiv_id: "2405.02161", title: "Simulating the Economic Impact of Rationality through Reinforcement Learning and Agent-Based Modelling", why: abm_simulation}
+  - {arxiv_id: "2206.08468", title: "Belief-Desire-Intention (BDI) Multi-agent System for Cloud Marketplace Negotiation", why: classical_mas}
+  - {arxiv_id: "2509.15238", title: "Generating Plans for Belief-Desire-Intention (BDI) Agents Using Alternating-Time Temporal Logic (ATL)", why: classical_mas}
+  # chatbots and assistants without tools
+  - {arxiv_id: "2004.13637", title: "Recipes for building an open-domain chatbot", why: chatbot_no_tools}
+  - {arxiv_id: "2307.09288", title: "Llama 2: Open Foundation and Fine-Tuned Chat Models", why: chatbot_no_tools}
+  - {arxiv_id: "2203.02155", title: "Training language models to follow instructions with human feedback", why: chatbot_no_tools}
+  - {arxiv_id: "2212.08073", title: "Constitutional AI: Harmlessness from AI Feedback", why: chatbot_no_tools}
+  - {arxiv_id: "2304.08485", title: "Visual Instruction Tuning", why: chatbot_no_tools}
+  - {arxiv_id: "1810.00278", title: "MultiWOZ -- A Large-Scale Multi-Domain Wizard-of-Oz Dataset for Task-Oriented Dialogue Modelling", why: chatbot_no_tools}
+  # general LLM work with no agent component
+  - {arxiv_id: "2306.05685", title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena", why: llm_general}
+  - {arxiv_id: "2211.09110", title: "Holistic Evaluation of Language Models", why: llm_general}
+  - {arxiv_id: "2210.11416", title: "Scaling Instruction-Finetuned Language Models", why: llm_general}
+  - {arxiv_id: "2305.20050", title: "Let's Verify Step by Step", why: llm_general}
+  - {arxiv_id: "2005.11401", title: "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks", why: rag_pipeline}
+  - {arxiv_id: "2107.03374", title: "Evaluating Large Language Models Trained on Code", why: codegen_single_shot}
+  - {arxiv_id: "2308.12950", title: "Code Llama: Open Foundation Models for Code", why: codegen_single_shot}

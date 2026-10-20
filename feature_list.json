@@ -14,7 +14,7 @@
     "make test exits 0 with at least one passing test",
     "./init.sh is idempotent (run twice)"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "id": "P0-02",

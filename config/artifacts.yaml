@@ -1,0 +1,17 @@
+# Curated artifacts fetched and versioned in P1-05 (GitHub repos, Hugging Face model and
+# dataset cards). STUB: grows with the anchors. Snapshots are hashed; a changed README
+# makes a new artifact_version, not a new artifact.
+# kind: repo|model|dataset ; `anchor` links to config/anchors.yaml when there is one.
+version: 0
+artifacts:
+  - {kind: repo, url: "https://github.com/ysymyth/ReAct", anchor: react}
+  - {kind: repo, url: "https://github.com/noahshinn/reflexion", anchor: reflexion}
+  - {kind: repo, url: "https://github.com/SWE-agent/SWE-agent", anchor: swe_agent}
+  - {kind: repo, url: "https://github.com/SWE-bench/SWE-bench", anchor: swe_bench}
+  - {kind: repo, url: "https://github.com/OpenAutoCoder/Agentless", anchor: agentless}
+  - {kind: repo, url: "https://github.com/All-Hands-AI/OpenHands", anchor: openhands}
+  - {kind: repo, url: "https://github.com/microsoft/autogen", anchor: autogen}
+  - {kind: repo, url: "https://github.com/geekan/MetaGPT", anchor: metagpt}
+  - {kind: repo, url: "https://github.com/modelcontextprotocol/modelcontextprotocol", anchor: mcp_spec}
+  - {kind: repo, url: "https://github.com/anthropics/skills", anchor: agent_skills}
+  - {kind: dataset, url: "https://huggingface.co/datasets/princeton-nlp/SWE-bench_Verified", anchor: swe_bench_verified}
