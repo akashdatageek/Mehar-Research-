@@ -14,7 +14,7 @@
     "make test exits 0 with at least one passing test",
     "./init.sh is idempotent (run twice)"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "id": "P0-02",
@@ -29,7 +29,7 @@
     "integration test creates and queries a vector column",
     "alembic upgrade head then downgrade base succeeds"
    ],
-   "passes": false
+   "passes": true
   },
   {
    "id": "P0-03",

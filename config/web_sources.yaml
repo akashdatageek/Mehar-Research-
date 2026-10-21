@@ -1,0 +1,9 @@
+# Curated blogs, specs and docs fetched and versioned in P1-05. STUB.
+# Harness/skills lineage often lives here rather than in papers (PLAN_v2_base §0 #5).
+# kind: spec|blog|docs ; `anchor` links to config/anchors.yaml when there is one.
+version: 0
+sources:
+  - {kind: spec, url: "https://modelcontextprotocol.io/specification", anchor: mcp_spec}
+  - {kind: blog, url: "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills", anchor: agent_skills}
+  - {kind: blog, url: "https://openai.com/index/introducing-swe-bench-verified/", anchor: swe_bench_verified}
+  - {kind: blog, url: "https://www.anthropic.com/research/building-effective-agents"}

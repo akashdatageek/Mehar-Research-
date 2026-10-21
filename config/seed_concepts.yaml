@@ -1,0 +1,26 @@
+# Seed canonical concepts for concept ER (P5-04 loads ~300 of these). STUB: format only.
+# PLAN.md Step 5b: auto-merge only on a curated alias hit; version markers (Verified, Lite,
+# v2, 7B, -Instruct, ...) never merge -- they become variant_of / subset_of links.
+# Will also be seeded from the frozen Papers with Code archive.
+#
+# kind: method|task|benchmark|dataset|metric|harness|tool_protocol|skill_format
+# aliases: curated (source=curated); case/acronym normalisation happens in code.
+# variant_of / subset_of: name of another concept in this file.
+version: 0
+concepts:
+  - {name: "Chain-of-Thought", kind: method, aliases: ["CoT", "chain of thought prompting"]}
+  - {name: "ReAct", kind: method, aliases: ["Reason+Act", "ReAct prompting"]}
+  - {name: "Reflexion", kind: method, aliases: []}
+  - {name: "Tree of Thoughts", kind: method, aliases: ["ToT"]}
+  - {name: "CodeAct", kind: method, aliases: ["executable code actions"]}
+  - {name: "SWE-bench", kind: benchmark, aliases: ["SWEbench", "SWE bench"]}
+  - {name: "SWE-bench Verified", kind: benchmark, aliases: [], subset_of: "SWE-bench"}
+  - {name: "SWE-bench Lite", kind: benchmark, aliases: [], subset_of: "SWE-bench"}
+  - {name: "WebArena", kind: benchmark, aliases: []}
+  - {name: "VisualWebArena", kind: benchmark, aliases: ["VWA"], variant_of: "WebArena"}
+  - {name: "pass@1", kind: metric, aliases: ["pass at 1"]}
+  - {name: "resolve rate", kind: metric, aliases: ["% resolved", "resolved rate"]}
+  - {name: "SWE-agent", kind: harness, aliases: []}
+  - {name: "OpenHands", kind: harness, aliases: ["OpenDevin"]}
+  - {name: "Model Context Protocol", kind: tool_protocol, aliases: ["MCP"]}
+  - {name: "Agent Skills", kind: skill_format, aliases: ["SKILL.md"]}

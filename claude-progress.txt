@@ -1,0 +1,83 @@
+# claude-progress.txt — append-only build log (newest at bottom)
+
+## 2026-10-20 — Fresh start (v3.1)
+- This build restarts from `main` with PLAN.md v3.1. The earlier build (P0-01..P0-08,
+  P1-01..P1-03) is archived on the branch `archive/v2-build-2026-10-20` and is reference
+  only. Nothing from it is assumed to pass; every feature is rebuilt and retested.
+- Lessons carried over from the archive (PLAN.md Steps 0-1): dockerd must be started by
+  hand in the cloud container; DB tests must FAIL, not skip, when Postgres is down; use
+  gemini-3.5-flash-lite or newer; normalise LaTeX escapes in titles; `ingest fetch` must
+  skip unknown ids; do not trust OpenAlex titles alone in dedup.
+
+## 2026-10-20 — Session 1 (initializer)
+Config written before P0-01
+- config/anchors.yaml: 46 anchors (43 papers, 3 artifacts) in 7 lineages, 59 typed
+  predecessor links (edge/component enums from PLAN.md). Started from the archived list;
+  changes: (a) OpenHands->CodeAct was `implements` (an artifact->concept type) -> now
+  `extends`; (b) API-Bank->Toolformer was `evaluates_on` (a benchmark does not evaluate on a
+  method) -> now `cites`; (c) added WebShop and ALFWorld (ReAct evaluates_on both) and a 7th
+  lineage reaching 2025: FireAct, AgentTuning, SWE-Gym, SWE-smith. 20 papers `fixture: true`,
+  3 `pdf_only: true` (ToolLLM, MetaGPT, MemGPT; P3-04 forces the PDF path).
+- config/niche.yaml (PLAN.md Step 2 item 0): definition, include/exclude rules, Layer-1
+  starting categories+keywords [assumption], 44 in-anchors (42 anchor papers minus
+  ALFWorld, plus CoALA and SayCan), 28 near-miss outs (RL/robotics without LLM policy,
+  classical ABM/BDI in cs.MA, chatbots without tools, general LLM work, RAG pipelines,
+  single-shot codegen).
+- arXiv verification: every arxiv_id in anchors.yaml and niche.yaml (115 entries, 73
+  unique ids) fetched from export.arxiv.org/api/query in 2 batched requests (>3 s apart);
+  all ids resolve, titles match (case/punctuation-insensitive), anchor years match the v1
+  date. The checker was confirmed to flag a wrong id and a wrong title. Script was a
+  one-off in the session scratchpad; P0-07's arXiv client will re-check on download.
+- Stubs: config/seed_concepts.yaml (16 example concepts incl. SWE-bench Verified/Lite as
+  subset_of SWE-bench), artifacts.yaml (11 repos/datasets), web_sources.yaml (4).
+
+## 2026-10-20 — Session 1 — P0-01 Repo skeleton and tooling: PASS
+What changed
+- pyproject.toml + uv.lock (Python 3.12 pinned, installed by uv), hatchling build.
+- src/rlg/ layout per CLAUDE.md (config, llm, queue, ingest, triage, parse, extract,
+  verify, er, store, serve, analytics, eval, plan, execute; each with a one-line role) and
+  Typer CLI `rlg version` (src/rlg/cli.py).
+- ruff (lint + format), mypy --strict on src/, pytest. Makefile: up, down, test, lint, fmt;
+  up/down are no-ops until docker-compose.yml exists (P0-02).
+- init.sh: idempotent; uv sync, creates data/{blobs,gold/dev,gold/heldout,backups}, starts
+  dockerd if Docker is installed but not running (cloud container, as root), then `make up`
+  and `alembic upgrade head` once those files exist. Fails if docker-compose.yml exists but
+  Docker is unreachable (no silent skip).
+- .env.example (keys + ARXIV_CONTACT_EMAIL + budget + DATABASE_URL), .gitignore (+egg-info).
+- tests/unit/test_skeleton.py: stage modules import, CLI version, anchors.yaml consistency
+  (unique ids, known predecessors, enum types, no link to a later year, 20 fixtures, >=3
+  pdf_only), niche.yaml shape (35-45 in, 20-30 out, no overlap, anchor ids agree), stubs parse.
+- tests/{unit,integration,e2e,fixtures}/, prompts/, reports/, docs/architecture/ created.
+Verification: make lint exit 0; make test 22 passed; ./init.sh run three times, exit 0 each.
+Dependencies: typer, pydantic, pyyaml (runtime); ruff, mypy, pytest, types-pyyaml (dev).
+  pyyaml is needed for config/*.yaml; the rest are the CLAUDE.md stack. hypothesis and the
+  DB stack are added by the features that need them.
+Open issues
+- Anchor link types are a curated judgement; Mehar should review them (and the niche
+  out list) before gates H0/H1.
+- Docker works here once dockerd is started (init.sh now does that).
+Next eligible feature: P0-02 (Postgres + pgvector via Docker).
+
+## 2026-10-21 — Session 2 — P0-02 Postgres + pgvector via Docker: PASS
+What changed
+- docker-compose.yml: pgvector/pgvector:0.8.7-pg17 (Postgres 17, pgvector 0.8.7) with a
+  pg_isready health check; host port via RLG_DB_PORT (default 5432).
+- Makefile: `make up` = compose up --wait, then `rlg db health`; `make down`; lint now
+  also covers migrations/.
+- Alembic: alembic.ini, migrations/env.py (URL from DATABASE_URL; tests pass their own via
+  config.attributes), script.py.mako, versions/0001_baseline.py (CREATE EXTENSION vector).
+- src/rlg/store/db.py: database_url(), make_engine(), healthcheck(); CLI `rlg db health`.
+- tests/integration/conftest.py: one throwaway database per test. Unlike the archived build,
+  an unreachable Postgres makes these tests FAIL (pytest.fail), per CLAUDE.md.
+- tests/integration/test_db.py: health check, server is PG 17, pgvector >= 0.8.7, vector
+  column create + nearest-neighbour query, alembic upgrade head -> downgrade base.
+Verification: make up healthy; make lint exit 0; make test 27 passed; with the DB stopped,
+  make test exits 1 (5 integration errors, no skips); ./init.sh twice exit 0 (it now runs
+  make up + alembic upgrade head).
+Dependencies added: sqlalchemy, alembic, psycopg[binary] (stack in PLAN_v2_base.md; Alembic
+  is required by CLAUDE.md). The pgvector Python package is not needed yet (raw SQL).
+Notes
+- DATABASE_URL is read from the process environment only; .env loading arrives with typed
+  settings in P0-03.
+- dockerd is not running in a fresh cloud container; init.sh starts it.
+Next eligible feature: P0-03 (Config loading).
