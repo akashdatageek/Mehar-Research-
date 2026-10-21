@@ -57,3 +57,27 @@ Open issues
   out list) before gates H0/H1.
 - Docker works here once dockerd is started (init.sh now does that).
 Next eligible feature: P0-02 (Postgres + pgvector via Docker).
+
+## 2026-10-21 — Session 2 — P0-02 Postgres + pgvector via Docker: PASS
+What changed
+- docker-compose.yml: pgvector/pgvector:0.8.7-pg17 (Postgres 17, pgvector 0.8.7) with a
+  pg_isready health check; host port via RLG_DB_PORT (default 5432).
+- Makefile: `make up` = compose up --wait, then `rlg db health`; `make down`; lint now
+  also covers migrations/.
+- Alembic: alembic.ini, migrations/env.py (URL from DATABASE_URL; tests pass their own via
+  config.attributes), script.py.mako, versions/0001_baseline.py (CREATE EXTENSION vector).
+- src/rlg/store/db.py: database_url(), make_engine(), healthcheck(); CLI `rlg db health`.
+- tests/integration/conftest.py: one throwaway database per test. Unlike the archived build,
+  an unreachable Postgres makes these tests FAIL (pytest.fail), per CLAUDE.md.
+- tests/integration/test_db.py: health check, server is PG 17, pgvector >= 0.8.7, vector
+  column create + nearest-neighbour query, alembic upgrade head -> downgrade base.
+Verification: make up healthy; make lint exit 0; make test 27 passed; with the DB stopped,
+  make test exits 1 (5 integration errors, no skips); ./init.sh twice exit 0 (it now runs
+  make up + alembic upgrade head).
+Dependencies added: sqlalchemy, alembic, psycopg[binary] (stack in PLAN_v2_base.md; Alembic
+  is required by CLAUDE.md). The pgvector Python package is not needed yet (raw SQL).
+Notes
+- DATABASE_URL is read from the process environment only; .env loading arrives with typed
+  settings in P0-03.
+- dockerd is not running in a fresh cloud container; init.sh starts it.
+Next eligible feature: P0-03 (Config loading).
